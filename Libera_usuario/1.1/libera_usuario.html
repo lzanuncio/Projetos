@@ -1,0 +1,101 @@
+<!doctype html>
+<font face = "Arial" size = 3 >
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type"
+    		content="text/html; charset=utf-8"/>
+    		<title>Auto-Desbloqueio</title>		
+		<!--[if IE]> --><link rel="stylesheet" type="text/css" href="http://scop.romi.com/lib_usu/css/ie.css"/><!-- <![endif]-->
+		<!--[if !IE]> --><link rel="stylesheet" type="text/css" href="http://scop.romi.com/lib_usu/css/chrome.css"/><!-- <![endif]-->
+	</head>
+
+  	<body onload="name_submitted.value='';passwd_submitted.value=''">
+
+  	  <div style=" background-color: #dddddd;
+ 		width: 500px;
+ 		padding: 10px;
+		
+ 		margin: 1px;
+		
+ 		border-width: 1px;
+ 		border: #5f5f5f 1px solid;
+ 		border-bottom: #afafaf 1px solid;
+ 		border-top-style: solid;
+	  ">
+
+	<p><b><font face="Arial" size="4" color="navy" ><center>LIBERA USUÁRIO</font></p></b> 
+
+		<p>Para liberar, escolha o sistema, ensira seu login e senha.</p>
+		<p>Para liberar mais vezes, é necessário recarregar a página.
+		<p><font color=red><b>Somente aperte o botão liberar após fechar o aplicativo.</b></font>
+		<p><font color=red><b>A senha deve ser a mesma usada para logar no Windows.</b></font>
+
+	</center>
+
+      <form action="aut.php" method="post" target="_self" onsubmit="enviar.disabled=true">
+        <table>
+	  <tr>
+	    <td>Sistema: </td><td> <select name="sistema">
+              <option value="ORACLE">ORACLE</option>
+              <option value="ECOMEX">ECOMEX</option>
+            </select> 
+	  </td></tr>
+	  <tr>
+            <td>Login: </td><td> <input type="text" name="name_submitted" size="20" id="pname"/></td>
+	  </tr>
+	  <tr>
+            <td> Senha: </td><td><input type="password" name="passwd_submitted" size="20" /></td>
+	  </tr>
+ 
+	</table>
+	<br>       
+ 	<center>
+		<input type="submit" name="enviar" onclick="javascript:document.getElementById('blanket').style.display = 'block';document.getElementById('aguarde').style.display = 'block';" value="            Liberar               "/>
+		<input type="button" name="refresh" value="            Recarregar            " onClick='parent.location="javascript:window.location.reload(true)"'/>
+	<div id="blanket"></div>
+	<div id="aguarde"></div>
+	</center>
+      </form>
+    </div>
+  </frameset>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</font>

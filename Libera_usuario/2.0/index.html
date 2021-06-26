@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<font face = "Arial" size = 3 >
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    		<title>Auto-Desbloqueio</title>		
+		<!--[if IE]> --><link rel="stylesheet" type="text/css" href="http://scop.romi.com/nlib_usu/css/teste.css"/><!-- <![endif]-->
+		<!--[if !IE]> --><link rel="stylesheet" type="text/css" href="http://scop.romi.com/nlib_usu/css/teste.css"/><!-- <![endif]-->
+		<link rel="stylesheet" type="text/css" href="http://scop.romi.com/nlib_usu/css/teste.css"/>
+		
+	</head>
+
+  	<body class="body" onload="name_submitted.value='';passwd_submitted.value=''">
+
+		<div class="posicao" id="login">
+
+			<p><b><font face="Arial" size="4" color="navy" >
+			<center>LIBERA USUÁRIO</font></p></b> 
+				<p>Para liberar, escolha o sistema, ensira seu login e senha.</p>
+				<p>Para liberar mais vezes, é necessário recarregar a página.
+				<p><font color="red"><b>Somente aperte o botão liberar após fechar o aplicativo.</b></font>
+				<p><font color="red"><b>A senha deve ser a mesma usada para logar no Windows.</b></font>
+			</center>
+			<form action="aut.php" method="post" target="_self" onsubmit="enviar.disabled=true">
+				<div class="divlogin">
+					<div class="tblogin">
+						<div class="div-select">
+							<select name="sistema">
+								<option selected disabled>Selecione o Sistema</option>
+								<option value="ORACLE">ORACLE</option>
+								<option value="ECOMEX">ECOMEX</option>
+							</select> 
+						</div>
+					</div>			
+					<div class="tblogin">
+						<img class="imagem" src="http://192.168.23.23/123/image/login.png"><input placeholder="Usuário" class="campo" type="text" name="name_submitted" size="20" id="pname"/>
+					</div>
+					<div class="tblogin">
+						<img class="imagem" src="http://192.168.23.23/123/image/pass.png"><input placeholder="Senha" class="campo" type="password" name="passwd_submitted" size="20" />
+					</div>
+					<div>
+						<input type="submit" class="btnColor" name="enviar" onclick="javascript:document.getElementById('blanket').style.display = 'block';document.getElementById('aguarde').style.display = 'block';" value="Liberar"/>
+					</div>
+				</div>
+			</form>
+		</div>     
+		<center>
+			<div id="blanket"></div>
+			<div id="aguarde"></div>
+		</center>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</font>

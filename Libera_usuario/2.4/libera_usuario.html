@@ -1,0 +1,98 @@
+﻿<!doctype html>
+<font face = "Arial" size = 3 >
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    		<title>Auto-Liberar</title>	
+			<link rel="shortcut icon" href="image/favicon.ico"/>
+			<link rel="icon" href="image/favicon.png"/>
+			
+			
+		<!--[if IE]><link rel="stylesheet" type="text/css" href="css/ie.css"/><!-- <![endif]-->
+		<!--[if !IE]>--><link rel="stylesheet" type="text/css" href="css/chrome.css"/><!-- <![endif]-->		
+	</head>
+
+  	<body class="body" onload="login.value='';senha.value=''">
+
+	
+		
+		<div class="posicao2" id="login">
+			<div class="ihelp">
+				<img src="image/help.png" width="32px" height="32px">
+				<span class="help">
+					<p><font color="red"><b>Para liberar, seguir os passos abaixo após fechar o Oracle ou E-Comex:</font>
+					<p>Primeiramente, escolha o sistema, ensira seu login e senha (a mesma usada para logar no Windows).
+					<p><font color="red">Em seguida, apertar o botão "LIBERAR" e aguardar a conclusão.</font>
+					<p>Em caso de dúvidas, contate o SCOP através dos ramais 9960/9961</b>
+				</span>
+			</div>
+			<p><b><font face="Arial" size="4" color="navy" >
+			<center>LIBERA USUÁRIO</font></b></center> 
+			<form action="aut.php" method="post" target="_self" onsubmit="enviar.disabled=true">
+				<div class="divlogin">
+					<div class="tblogin">
+						<div class="div-select">
+							<select name="sistema">
+								<option disabled>Selecione o Sistema</option>
+								<option value="ORACLE" selected>ORACLE</option>
+								<option value="ECOMEX">ECOMEX</option>
+								<option value="DEV-ORACLE">DEV-ORACLE</option>
+							</select> 
+						</div>
+					</div>			
+					<div class="tblogin">
+						<img class="imagem" src="image/login.png"><input placeholder="Usuário" class="campo" type="text" name="login" size="20" id="pname"/>
+					</div>
+					<div class="tblogin">
+						<img class="imagem" src="image/pass.png"><input placeholder="Senha" class="campo" type="password" name="senha" size="20" />
+					</div>
+					<div>
+						<input type="submit" class="btnColor" name="enviar" onclick="javascript:document.getElementById('blanket').style.display = 'block';document.getElementById('aguarde').style.display = 'block';" value="Liberar"/>
+					</div>
+				</div>
+			</form>
+		</div>     
+		<center>
+			<div id="blanket"></div>
+			<div id="aguarde"></div>
+		</center>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</font>

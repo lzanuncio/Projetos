@@ -1,0 +1,295 @@
+#################### Last Update 18-05-17(08:16:39) (Brazil/Sao Paulo) ####################
+ 
+001 - 192.168.23.23  - Data: 28/12/16 Hora: 11:08:34 - Nenhum processo localizado em - OI 
+002 - 192.168.23.24  - Data: 28/12/16 Hora: 13:59:53 - Nenhum processo localizado em - mdoria 
+003 - 192.168.23.24  - Data: 28/12/16 Hora: 14:00:20 - Processo(s) liberado(s) para  - mdoria 
+004 - 192.168.21.171 - Data: 30/12/16 Hora: 12:39:56 - Processo(s) liberado(s) para  - dcichelli 
+005 - 192.168.23.33  - Data: 02/01/17 Hora: 13:29:59 - Processo(s) liberado(s) para  - tmoliveira 
+006 - 192.168.23.33  - Data: 03/01/17 Hora: 16:28:58 - Processo(s) liberado(s) para  - tmoliveira 
+007 - 192.168.23.200 - Data: 04/01/17 Hora: 09:34:21 - Processo(s) liberado(s) para  - acabuatam 
+008 - 192.168.23.61  - Data: 05/01/17 Hora: 10:15:14 - Nenhum processo localizado em - fbaldo 
+009 - 192.168.23.61  - Data: 06/01/17 Hora: 07:45:20 - Nenhum processo localizado em - fbaldo 
+010 - 192.168.23.61  - Data: 09/01/17 Hora: 13:35:58 - Processo(s) liberado(s) para  - fbaldo 
+011 - 192.168.23.61  - Data: 09/01/17 Hora: 13:36:17 - Nenhum processo localizado em - fbaldo 
+012 - 192.168.21.134 - Data: 09/01/17 Hora: 14:34:32 - Processo(s) liberado(s) para  - kalves 
+013 - 192.168.23.69  - Data: 09/01/17 Hora: 15:55:44 - Nenhum processo localizado em - jrneves 
+014 - 192.168.21.169 - Data: 09/01/17 Hora: 16:05:35 - Processo(s) liberado(s) para  - acrsousa 
+015 - 192.168.21.169 - Data: 09/01/17 Hora: 16:05:53 - Nenhum processo localizado em - acrsousa 
+016 - 192.168.21.169 - Data: 09/01/17 Hora: 16:06:16 - Nenhum processo localizado em - acrsousa 
+017 - 192.168.23.200 - Data: 09/01/17 Hora: 18:12:19 - Nenhum processo localizado em - acabuatam 
+018 - 192.168.23.97  - Data: 10/01/17 Hora: 15:04:46 - Processo(s) liberado(s) para  - rmfsilva 
+019 - 192.168.23.97  - Data: 10/01/17 Hora: 15:05:54 - Nenhum processo localizado em - rmfsilva 
+020 - 192.168.26.74  - Data: 10/01/17 Hora: 15:38:03 - Processo(s) liberado(s) para  - jkgarcia 
+021 - 192.168.23.97  - Data: 10/01/17 Hora: 15:47:53 - Nenhum processo localizado em - rmfsilva 
+022 - 192.168.23.97  - Data: 10/01/17 Hora: 16:10:58 - Processo(s) liberado(s) para  - rmfsilva 
+023 - 192.168.26.230 - Data: 11/01/17 Hora: 14:24:29 - Processo(s) liberado(s) para  - mfrostirola 
+024 - 192.168.26.230 - Data: 11/01/17 Hora: 14:47:31 - Processo(s) liberado(s) para  - mfrostirola 
+025 - 192.168.26.230 - Data: 11/01/17 Hora: 14:49:24 - Nenhum processo localizado em - mfrostirola 
+026 - 192.168.21.169 - Data: 11/01/17 Hora: 14:58:33 - Processo(s) liberado(s) para  - acrsousa 
+027 - 192.168.26.230 - Data: 11/01/17 Hora: 15:23:12 - Processo(s) liberado(s) para  - mfrostirola 
+028 - 192.168.26.230 - Data: 11/01/17 Hora: 16:08:29 - Processo(s) liberado(s) para  - mfrostirola 
+029 - 192.168.26.230 - Data: 11/01/17 Hora: 16:28:28 - Processo(s) liberado(s) para  - mfrostirola 
+030 - 192.168.23.96  - Data: 11/01/17 Hora: 16:33:34 - Processo(s) liberado(s) para  - rmfsilva 
+031 - 192.168.21.169 - Data: 11/01/17 Hora: 16:38:47 - Processo(s) liberado(s) para  - acrsousa 
+032 - 192.168.23.104 - Data: 12/01/17 Hora: 15:34:08 - Nenhum processo localizado em - rsleite 
+033 - 192.168.23.104 - Data: 13/01/17 Hora: 10:27:08 - Processo(s) liberado(s) para  - rsleite 
+034 - 192.168.21.169 - Data: 13/01/17 Hora: 14:48:54 - Processo(s) liberado(s) para  - acrsousa 
+035 - 192.168.23.96  - Data: 16/01/17 Hora: 07:42:57 - Nenhum processo localizado em - rmfsilva 
+036 - 192.168.23.104 - Data: 16/01/17 Hora: 13:39:52 - Processo(s) liberado(s) para  - rsleite 
+037 - 192.168.23.172 - Data: 16/01/17 Hora: 15:59:45 - Processo(s) liberado(s) para  - ecosta 
+038 - 192.168.23.172 - Data: 16/01/17 Hora: 16:16:21 - Processo(s) liberado(s) para  - ecosta 
+039 - 192.168.26.230 - Data: 17/01/17 Hora: 08:30:51 - Processo(s) liberado(s) para  - mfrostirola 
+040 - 192.168.23.232 - Data: 17/01/17 Hora: 09:24:01 - Processo(s) liberado(s) para  - elourenco 
+041 - 192.168.21.177 - Data: 18/01/17 Hora: 10:12:40 - Processo(s) liberado(s) para  - cctoledo 
+042 - 192.168.26.74  - Data: 18/01/17 Hora: 10:21:21 - Processo(s) liberado(s) para  - jkgarcia 
+043 - 192.168.23.104 - Data: 18/01/17 Hora: 15:19:39 - Nenhum processo localizado em - rsleite 
+044 - 192.168.21.156 - Data: 18/01/17 Hora: 16:19:03 - Processo(s) liberado(s) para  - cbizzi 
+045 - 192.168.23.104 - Data: 19/01/17 Hora: 10:43:55 - Processo(s) liberado(s) para  - rsleite 
+046 - 192.168.21.156 - Data: 19/01/17 Hora: 15:59:24 - Nenhum processo localizado em - cbizzi 
+047 - 192.168.21.156 - Data: 19/01/17 Hora: 15:59:45 - Nenhum processo localizado em - cbizzi 
+048 - 192.168.21.177 - Data: 19/01/17 Hora: 16:30:19 - Processo(s) liberado(s) para  - cctoledo 
+049 - 192.168.23.172 - Data: 20/01/17 Hora: 10:13:53 - Processo(s) liberado(s) para  - ecosta 
+050 - 192.168.21.156 - Data: 20/01/17 Hora: 11:14:11 - Processo(s) liberado(s) para  - cbizzi 
+051 - 192.168.23.232 - Data: 23/01/17 Hora: 07:45:19 - Processo(s) liberado(s) para  - elourenco 
+052 - 192.168.21.156 - Data: 23/01/17 Hora: 16:25:29 - Processo(s) liberado(s) para  - cbizzi 
+053 - 192.168.21.177 - Data: 24/01/17 Hora: 10:31:40 - Processo(s) liberado(s) para  - cctoledo 
+054 - 192.168.23.232 - Data: 25/01/17 Hora: 14:12:51 - Processo(s) liberado(s) para  - elourenco 
+055 - 192.168.21.113 - Data: 26/01/17 Hora: 09:16:11 - Processo(s) liberado(s) para  - dcichelli 
+056 - 192.168.23.61  - Data: 27/01/17 Hora: 09:16:49 - Processo(s) liberado(s) para  - fbaldo 
+057 - 192.168.23.61  - Data: 27/01/17 Hora: 09:18:34 - Nenhum processo localizado em - fbaldo 
+058 - 192.168.23.61  - Data: 27/01/17 Hora: 09:19:25 - Nenhum processo localizado em - fbaldo 
+059 - 192.168.23.104 - Data: 27/01/17 Hora: 09:39:30 - Processo(s) liberado(s) para  - rsleite 
+060 - 192.168.23.104 - Data: 27/01/17 Hora: 09:39:48 - Nenhum processo localizado em - rsleite 
+061 - 192.168.21.177 - Data: 30/01/17 Hora: 09:02:06 - Nenhum processo localizado em - cctoledo 
+062 - 192.168.21.177 - Data: 30/01/17 Hora: 09:02:05 - Processo(s) liberado(s) para  - cctoledo 
+063 - 192.168.21.177 - Data: 31/01/17 Hora: 10:16:22 - Processo(s) liberado(s) para  - cctoledo 
+064 - 192.168.21.177 - Data: 01/02/17 Hora: 08:12:46 - Processo(s) liberado(s) para  - cctoledo 
+065 - 192.168.21.156 - Data: 01/02/17 Hora: 14:33:50 - Processo(s) liberado(s) para  - cbizzi 
+066 - 192.168.21.156 - Data: 01/02/17 Hora: 14:34:13 - Nenhum processo localizado em - cbizzi 
+067 - 192.168.21.156 - Data: 01/02/17 Hora: 14:34:54 - Nenhum processo localizado em - cbizzi 
+068 - 192.168.23.99  - Data: 03/02/17 Hora: 13:12:00 - Processo(s) liberado(s) para  - rmfsilva 
+069 - 192.168.21.177 - Data: 06/02/17 Hora: 09:22:37 - Processo(s) liberado(s) para  - cctoledo 
+070 - 192.168.26.230 - Data: 06/02/17 Hora: 15:40:24 - Processo(s) liberado(s) para  - mfrostirola 
+071 - 192.168.26.230 - Data: 07/02/17 Hora: 10:08:33 - Processo(s) liberado(s) para  - mfrostirola 
+072 - 192.168.23.33  - Data: 08/02/17 Hora: 09:30:18 - Nenhum processo localizado em - tmoliveira 
+073 - 192.168.21.113 - Data: 08/02/17 Hora: 15:56:43 - Nenhum processo localizado em - dcichelli 
+074 - 192.168.21.113 - Data: 08/02/17 Hora: 16:09:51 - Processo(s) liberado(s) para  - dcichelli 
+075 - 192.168.21.177 - Data: 08/02/17 Hora: 16:31:50 - Processo(s) liberado(s) para  - cctoledo 
+076 - 192.168.21.113 - Data: 08/02/17 Hora: 16:34:23 - Processo(s) liberado(s) para  - dcichelli 
+077 - 192.168.21.156 - Data: 09/02/17 Hora: 14:42:25 - Processo(s) liberado(s) para  - cbizzi 
+078 - 192.168.21.156 - Data: 09/02/17 Hora: 15:02:55 - Processo(s) liberado(s) para  - cbizzi 
+079 - 192.168.21.177 - Data: 09/02/17 Hora: 17:10:55 - Processo(s) liberado(s) para  - cctoledo 
+080 - 192.168.21.113 - Data: 10/02/17 Hora: 09:08:55 - Processo(s) liberado(s) para  - dcichelli 
+081 - 192.168.26.230 - Data: 10/02/17 Hora: 09:59:06 - Processo(s) liberado(s) para  - mfrostirola 
+082 - 192.168.26.230 - Data: 10/02/17 Hora: 10:07:35 - Processo(s) liberado(s) para  - mfrostirola 
+083 - 192.168.26.230 - Data: 10/02/17 Hora: 12:57:54 - Processo(s) liberado(s) para  - mfrostirola 
+084 - 192.168.26.230 - Data: 10/02/17 Hora: 12:58:47 - Nenhum processo localizado em - mfrostirola 
+085 - 192.168.26.230 - Data: 10/02/17 Hora: 13:07:54 - Processo(s) liberado(s) para  - mfrostirola 
+086 - 192.168.23.104 - Data: 10/02/17 Hora: 13:16:38 - Nenhum processo localizado em - rsleite 
+087 - 192.168.21.177 - Data: 10/02/17 Hora: 13:20:18 - Processo(s) liberado(s) para  - cctoledo 
+088 - 192.168.21.113 - Data: 10/02/17 Hora: 13:34:44 - Nenhum processo localizado em - dcichelli 
+089 - 192.168.26.74  - Data: 13/02/17 Hora: 10:25:50 - Processo(s) liberado(s) para  - jkgarcia 
+090 - 192.168.23.232 - Data: 13/02/17 Hora: 13:33:47 - Processo(s) liberado(s) para  - elourenco 
+091 - 192.168.24.128 - Data: 13/02/17 Hora: 15:04:20 - Nenhum processo localizado em - lnobre 
+092 - 192.168.26.74  - Data: 13/02/17 Hora: 16:20:42 - Processo(s) liberado(s) para  - jkgarcia 
+093 - 192.168.26.74  - Data: 13/02/17 Hora: 16:21:33 - Nenhum processo localizado em - jkgarcia 
+094 - 192.168.23.232 - Data: 14/02/17 Hora: 10:12:35 - Processo(s) liberado(s) para  - elourenco 
+095 - 192.168.21.177 - Data: 14/02/17 Hora: 11:00:55 - Processo(s) liberado(s) para  - cctoledo 
+096 - 192.168.21.177 - Data: 14/02/17 Hora: 13:52:47 - Processo(s) liberado(s) para  - cctoledo 
+097 - 192.168.21.169 - Data: 14/02/17 Hora: 14:37:51 - Processo(s) liberado(s) para  - acrsousa 
+098 - 192.168.23.99  - Data: 15/02/17 Hora: 13:58:38 - Processo(s) liberado(s) para  - rmfsilva 
+099 - 192.168.23.99  - Data: 15/02/17 Hora: 13:58:46 - Nenhum processo localizado em - rmfsilva 
+100 - 192.168.23.172 - Data: 15/02/17 Hora: 15:53:40 - Processo(s) liberado(s) para  - ecosta 
+101 - 192.168.26.173 - Data: 16/02/17 Hora: 09:40:49 - Processo(s) liberado(s) para  - crocha 
+102 - 192.168.26.173 - Data: 16/02/17 Hora: 09:47:44 - Processo(s) liberado(s) para  - crocha 
+103 - 192.168.26.173 - Data: 17/02/17 Hora: 07:05:56 - Processo(s) liberado(s) para  - crocha 
+104 - 192.168.26.173 - Data: 17/02/17 Hora: 07:12:01 - Processo(s) liberado(s) para  - crocha 
+105 - 192.168.26.173 - Data: 17/02/17 Hora: 07:19:07 - Processo(s) liberado(s) para  - crocha 
+106 - 192.168.26.173 - Data: 17/02/17 Hora: 07:23:56 - Processo(s) liberado(s) para  - crocha 
+107 - 192.168.21.186 - Data: 17/02/17 Hora: 10:47:48 - Nenhum processo localizado em - amiguel 
+108 - 192.168.21.113 - Data: 17/02/17 Hora: 10:48:06 - Processo(s) liberado(s) para  - dcichelli 
+109 - 192.168.21.113 - Data: 17/02/17 Hora: 10:49:19 - Nenhum processo localizado em - dcichelli 
+110 - 192.168.23.202 - Data: 20/02/17 Hora: 10:27:57 - Processo(s) liberado(s) para  - vdionisio 
+111 - 192.168.23.54  - Data: 20/02/17 Hora: 10:28:19 - Nenhum processo localizado em - dviolin 
+112 - 192.168.23.202 - Data: 20/02/17 Hora: 10:30:22 - Nenhum processo localizado em - vdionisio 
+113 - 192.168.23.202 - Data: 20/02/17 Hora: 10:43:33 - Processo(s) liberado(s) para  - vdionisio 
+114 - 192.168.23.200 - Data: 20/02/17 Hora: 10:47:48 - Nenhum processo localizado em - acabuatam 
+115 - 192.168.21.177 - Data: 20/02/17 Hora: 13:06:45 - Processo(s) liberado(s) para  - cctoledo 
+116 - 192.168.21.156 - Data: 20/02/17 Hora: 15:05:01 - Processo(s) liberado(s) para  - cbizzi 
+117 - 192.168.23.99  - Data: 20/02/17 Hora: 15:46:03 - Processo(s) liberado(s) para  - rmfsilva 
+118 - 192.168.23.99  - Data: 20/02/17 Hora: 15:48:12 - Nenhum processo localizado em - rmfsilva 
+119 - 192.168.23.99  - Data: 20/02/17 Hora: 15:48:35 - Nenhum processo localizado em - rmfsilva 
+120 - 192.168.23.232 - Data: 20/02/17 Hora: 16:08:11 - Processo(s) liberado(s) para  - elourenco 
+121 - 192.168.26.143 - Data: 20/02/17 Hora: 16:43:52 - Processo(s) liberado(s) para  - vribeiro 
+122 - 192.168.23.99  - Data: 21/02/17 Hora: 10:15:16 - Processo(s) liberado(s) para  - rmfsilva 
+123 - 192.168.23.24  - Data: 21/02/17 Hora: 14:15:59 - Nenhum processo localizado em - rfnazatto 
+124 - 192.168.23.24  - Data: 21/02/17 Hora: 14:18:23 - Processo(s) liberado(s) para  - rfnazatto 
+125 - 192.168.21.169 - Data: 21/02/17 Hora: 16:03:51 - Nenhum processo localizado em - acrsousa 
+126 - 192.168.21.177 - Data: 22/02/17 Hora: 11:48:51 - Processo(s) liberado(s) para  - cctoledo 
+127 - 192.168.23.202 - Data: 22/02/17 Hora: 12:25:10 - Processo(s) liberado(s) para  - vdionisio 
+128 - 192.168.23.166 - Data: 23/02/17 Hora: 07:29:17 - Processo(s) liberado(s) para  - elourenco 
+129 - 192.168.23.166 - Data: 23/02/17 Hora: 07:44:25 - Processo(s) liberado(s) para  - elourenco 
+130 - 192.168.23.119 - Data: 23/02/17 Hora: 10:43:52 - Processo(s) liberado(s) para  - rguerini 
+131 - 192.168.21.156 - Data: 24/02/17 Hora: 14:26:35 - Processo(s) liberado(s) para  - cbizzi 
+132 - 192.168.21.156 - Data: 24/02/17 Hora: 14:28:07 - Nenhum processo localizado em - cbizzi 
+133 - 192.168.21.156 - Data: 24/02/17 Hora: 14:28:56 - Nenhum processo localizado em - cbizzi 
+134 - 192.168.23.93  - Data: 27/02/17 Hora: 09:30:58 - Processo(s) liberado(s) para  - mfrostirola 
+135 - 192.168.23.93  - Data: 27/02/17 Hora: 13:04:51 - Processo(s) liberado(s) para  - mfrostirola 
+136 - 192.168.26.74  - Data: 28/02/17 Hora: 08:44:41 - Processo(s) liberado(s) para  - jkgarcia 
+137 - 192.168.26.150 - Data: 28/02/17 Hora: 09:11:33 - Processo(s) liberado(s) para  - adasilva 
+138 - 192.168.26.173 - Data: 02/03/17 Hora: 07:39:45 - Processo(s) liberado(s) para  - crocha 
+139 - 192.168.26.173 - Data: 02/03/17 Hora: 07:46:04 - Processo(s) liberado(s) para  - crocha 
+140 - 192.168.26.173 - Data: 02/03/17 Hora: 07:49:54 - Processo(s) liberado(s) para  - crocha 
+141 - 192.168.26.173 - Data: 02/03/17 Hora: 08:03:54 - Processo(s) liberado(s) para  - crocha 
+142 - 192.168.23.232 - Data: 02/03/17 Hora: 08:26:53 - Processo(s) liberado(s) para  - elourenco 
+143 - 192.168.26.143 - Data: 02/03/17 Hora: 12:26:50 - Processo(s) liberado(s) para  - vribeiro 
+144 - 192.168.26.143 - Data: 02/03/17 Hora: 12:37:46 - Processo(s) liberado(s) para  - vribeiro 
+145 - 192.168.23.200 - Data: 02/03/17 Hora: 12:38:09 - Processo(s) liberado(s) para  - acabuatam 
+146 - 192.168.23.99  - Data: 02/03/17 Hora: 13:38:47 - Processo(s) liberado(s) para  - rmfsilva 
+147 - 192.168.21.102 - Data: 03/03/17 Hora: 14:27:53 - Processo(s) liberado(s) para  - lpbellani 
+148 - 192.168.21.169 - Data: 03/03/17 Hora: 14:50:08 - Nenhum processo localizado em - acrsousa 
+149 - 192.168.21.169 - Data: 03/03/17 Hora: 14:50:54 - Nenhum processo localizado em - acrsousa 
+150 - 192.168.21.169 - Data: 03/03/17 Hora: 14:50:54 - Nenhum processo localizado em - acrsousa 
+151 - 192.168.21.169 - Data: 07/03/17 Hora: 13:31:53 - Nenhum processo localizado em - acrsousa 
+152 - 192.168.23.172 - Data: 07/03/17 Hora: 16:10:32 - Processo(s) liberado(s) para  - elourenco 
+153 - 192.168.23.232 - Data: 07/03/17 Hora: 16:12:23 - Nenhum processo localizado em - elourenco 
+154 - 192.168.21.177 - Data: 08/03/17 Hora: 11:23:39 - Processo(s) liberado(s) para  - cctoledo 
+155 - 192.168.21.177 - Data: 08/03/17 Hora: 11:24:37 - Processo(s) liberado(s) para  - cctoledo 
+156 - 192.168.21.177 - Data: 08/03/17 Hora: 15:04:53 - Processo(s) liberado(s) para  - cctoledo 
+157 - 192.168.26.143 - Data: 08/03/17 Hora: 16:08:51 - Processo(s) liberado(s) para  - vribeiro 
+158 - 192.168.23.232 - Data: 10/03/17 Hora: 14:07:54 - Processo(s) liberado(s) para  - elourenco 
+159 - 192.168.26.143 - Data: 10/03/17 Hora: 14:49:29 - Processo(s) liberado(s) para  - vribeiro 
+160 - 192.168.23.172 - Data: 10/03/17 Hora: 14:57:02 - Processo(s) liberado(s) para  - ecosta 
+161 - 192.168.26.74  - Data: 14/03/17 Hora: 08:45:17 - Processo(s) liberado(s) para  - jkgarcia 
+162 - 192.168.26.74  - Data: 14/03/17 Hora: 08:45:51 - Nenhum processo localizado em - jkgarcia 
+163 - 192.168.21.177 - Data: 14/03/17 Hora: 09:24:56 - Processo(s) liberado(s) para  - cctoledo 
+164 - 192.168.23.94  - Data: 15/03/17 Hora: 18:08:54 - Nenhum processo localizado em - mfrostirola 
+165 - 192.168.23.102 - Data: 16/03/17 Hora: 14:07:53 - Processo(s) liberado(s) para  - rmfsilva 
+166 - 192.168.23.102 - Data: 16/03/17 Hora: 15:38:26 - Processo(s) liberado(s) para  - rmfsilva 
+167 - 192.168.21.169 - Data: 17/03/17 Hora: 10:03:49 - Nenhum processo localizado em - acrsousa 
+168 - 192.168.23.54  - Data: 20/03/17 Hora: 14:03:22 - Nenhum processo localizado em - dviolin 
+169 - 192.168.21.177 - Data: 21/03/17 Hora: 08:37:44 - Processo(s) liberado(s) para  - cctoledo 
+170 - 192.168.26.150 - Data: 21/03/17 Hora: 13:58:15 - Processo(s) liberado(s) para  - adasilva 
+171 - 192.168.21.169 - Data: 21/03/17 Hora: 16:06:58 - Processo(s) liberado(s) para  - acrsousa 
+172 - 192.168.21.169 - Data: 21/03/17 Hora: 16:09:53 - Nenhum processo localizado em - acrsousa 
+173 - 192.168.23.232 - Data: 22/03/17 Hora: 17:46:36 - Processo(s) liberado(s) para  - elourenco 
+174 - 192.168.23.232 - Data: 23/03/17 Hora: 09:51:46 - Processo(s) liberado(s) para  - elourenco 
+175 - 192.168.23.172 - Data: 23/03/17 Hora: 10:28:33 - Processo(s) liberado(s) para  - ecosta 
+176 - 192.168.21.177 - Data: 23/03/17 Hora: 15:30:12 - Processo(s) liberado(s) para  - cctoledo 
+177 - 192.168.23.58  - Data: 27/03/17 Hora: 14:56:21 - Nenhum processo localizado em - nrombi 
+178 - 192.168.21.177 - Data: 28/03/17 Hora: 09:56:00 - Nenhum processo localizado em - cctoledo 
+179 - 192.168.21.186 - Data: 28/03/17 Hora: 11:29:44 - Nenhum processo localizado em - amiguel 
+180 - 192.168.21.175 - Data: 28/03/17 Hora: 13:11:13 - Processo(s) liberado(s) para  - jmacedo 
+181 - 192.168.21.175 - Data: 28/03/17 Hora: 13:11:40 - Processo(s) liberado(s) para  - jmacedo 
+182 - 192.168.23.91  - Data: 28/03/17 Hora: 17:49:11 - Processo(s) liberado(s) para  - mfrostirola 
+183 - 192.168.23.232 - Data: 28/03/17 Hora: 17:55:55 - Processo(s) liberado(s) para  - elourenco 
+184 - 192.168.23.232 - Data: 29/03/17 Hora: 09:54:06 - Processo(s) liberado(s) para  - elourenco 
+185 - 192.168.21.144 - Data: 29/03/17 Hora: 13:46:58 - Processo(s) liberado(s) para  - apestana 
+186 - 192.168.21.113 - Data: 29/03/17 Hora: 14:45:35 - Nenhum processo localizado em - dcichelli 
+187 - 192.168.23.232 - Data: 29/03/17 Hora: 17:10:18 - Nenhum processo localizado em - elourenco 
+188 - 192.168.23.91  - Data: 30/03/17 Hora: 11:15:25 - Nenhum processo localizado em - mfrostirola 
+189 - 192.168.23.33  - Data: 30/03/17 Hora: 11:45:29 - Processo(s) liberado(s) para  - tmoliveira 
+190 - 192.168.23.33  - Data: 30/03/17 Hora: 11:46:05 - Nenhum processo localizado em - tmoliveira 
+191 - 192.168.23.105 - Data: 30/03/17 Hora: 14:50:49 - Nenhum processo localizado em - rmfsilva 
+192 - 192.168.23.172 - Data: 31/03/17 Hora: 08:03:17 - Processo(s) liberado(s) para  - ecosta 
+193 - 192.168.23.91  - Data: 31/03/17 Hora: 08:45:09 - Processo(s) liberado(s) para  - mfrostirola 
+194 - 192.168.26.173 - Data: 31/03/17 Hora: 13:56:48 - Processo(s) liberado(s) para  - crocha 
+195 - 192.168.21.177 - Data: 03/04/17 Hora: 08:14:52 - Nenhum processo localizado em - cctoledo 
+196 - 192.168.23.94  - Data: 03/04/17 Hora: 08:25:22 - Processo(s) liberado(s) para  - mfrostirola 
+197 - 192.168.30.127 - Data: 03/04/17 Hora: 10:50:22 - Nenhum processo localizado em - sbueno 
+198 - 192.168.26.143 - Data: 03/04/17 Hora: 10:52:15 - Nenhum processo localizado em - sbueno 
+199 - 192.168.23.58  - Data: 03/04/17 Hora: 14:54:11 - Nenhum processo localizado em - nrombi 
+200 - 192.168.23.105 - Data: 03/04/17 Hora: 16:46:18 - Nenhum processo localizado em - rmfsilva 
+201 - 192.168.23.105 - Data: 03/04/17 Hora: 16:48:08 - Nenhum processo localizado em - rmfsilva 
+202 - 192.168.23.105 - Data: 03/04/17 Hora: 16:50:26 - Nenhum processo localizado em - rmfsilva 
+203 - 192.168.21.167 - Data: 04/04/17 Hora: 11:42:04 - Processo(s) liberado(s) para  - razani 
+204 - 192.168.21.177 - Data: 04/04/17 Hora: 14:30:10 - Processo(s) liberado(s) para  - cctoledo 
+205 - 192.168.23.58  - Data: 04/04/17 Hora: 16:14:08 - Processo(s) liberado(s) para  - nrombi 
+206 - 192.168.26.74  - Data: 05/04/17 Hora: 07:43:21 - Processo(s) liberado(s) para  - jkgarcia 
+207 - 192.168.26.74  - Data: 05/04/17 Hora: 07:43:52 - Nenhum processo localizado em - jkgarcia 
+208 - 192.168.23.58  - Data: 05/04/17 Hora: 09:46:07 - Processo(s) liberado(s) para  - nrombi 
+209 - 192.168.23.105 - Data: 05/04/17 Hora: 10:47:11 - Processo(s) liberado(s) para  - rmfsilva 
+210 - 192.168.23.172 - Data: 05/04/17 Hora: 16:20:05 - Processo(s) liberado(s) para  - ecosta 
+211 - 192.168.23.172 - Data: 05/04/17 Hora: 16:20:14 - Nenhum processo localizado em - ecosta 
+212 - 192.168.23.58  - Data: 06/04/17 Hora: 08:58:08 - Nenhum processo localizado em - nrombi 
+213 - 192.168.21.177 - Data: 06/04/17 Hora: 09:51:57 - Processo(s) liberado(s) para  - cctoledo 
+214 - 192.168.23.94  - Data: 06/04/17 Hora: 10:14:48 - Nenhum processo localizado em - mfrostirola 
+215 - 192.168.26.150 - Data: 06/04/17 Hora: 11:06:33 - Processo(s) liberado(s) para  - adasilva 
+216 - 192.168.21.177 - Data: 06/04/17 Hora: 11:59:14 - Processo(s) liberado(s) para  - cctoledo 
+217 - 192.168.26.74  - Data: 06/04/17 Hora: 15:42:10 - Processo(s) liberado(s) para  - jkgarcia 
+218 - 192.168.26.74  - Data: 06/04/17 Hora: 15:42:24 - Nenhum processo localizado em - jkgarcia 
+219 - 192.168.21.169 - Data: 06/04/17 Hora: 17:32:28 - Processo(s) liberado(s) para  - acrsousa 
+220 - 192.168.21.177 - Data: 07/04/17 Hora: 09:33:37 - Processo(s) liberado(s) para  - cctoledo 
+221 - 192.168.21.177 - Data: 07/04/17 Hora: 10:07:39 - Processo(s) liberado(s) para  - cctoledo 
+222 - 192.168.21.113 - Data: 07/04/17 Hora: 13:47:41 - Processo(s) liberado(s) para  - dcichelli 
+223 - 192.168.23.232 - Data: 08/04/17 Hora: 13:20:49 - Nenhum processo localizado em - elourenco 
+224 - 192.168.21.177 - Data: 11/04/17 Hora: 14:29:03 - Processo(s) liberado(s) para  - cctoledo 
+225 - 192.168.23.105 - Data: 12/04/17 Hora: 07:23:19 - Processo(s) liberado(s) para  - rmfsilva 
+226 - 192.168.23.232 - Data: 12/04/17 Hora: 15:32:17 - Processo(s) liberado(s) para  - elourenco 
+227 - 192.168.23.40  - Data: 12/04/17 Hora: 16:17:53 - Nenhum processo localizado em - grossi 
+228 - 192.168.23.40  - Data: 12/04/17 Hora: 16:18:25 - Processo(s) liberado(s) para  - grossi 
+229 - 192.168.23.172 - Data: 12/04/17 Hora: 17:29:40 - Processo(s) liberado(s) para  - ecosta 
+230 - 192.168.21.177 - Data: 13/04/17 Hora: 10:15:09 - Processo(s) liberado(s) para  - cctoledo 
+231 - 192.168.21.169 - Data: 13/04/17 Hora: 15:44:01 - Nenhum processo localizado em - acrsousa 
+232 - 192.168.21.169 - Data: 13/04/17 Hora: 16:04:42 - Processo(s) liberado(s) para  - acrsousa 
+233 - 192.168.26.173 - Data: 17/04/17 Hora: 14:15:37 - Processo(s) liberado(s) para  - crocha 
+234 - 192.168.26.173 - Data: 17/04/17 Hora: 14:30:07 - Processo(s) liberado(s) para  - crocha 
+235 - 192.168.21.113 - Data: 18/04/17 Hora: 14:07:26 - Processo(s) liberado(s) para  - dcichelli 
+236 - 192.168.23.105 - Data: 18/04/17 Hora: 16:15:22 - Processo(s) liberado(s) para  - rmfsilva 
+237 - 192.168.23.58  - Data: 19/04/17 Hora: 11:08:24 - Nenhum processo localizado em - nrombi 
+238 - 192.168.23.232 - Data: 19/04/17 Hora: 13:30:49 - Processo(s) liberado(s) para  - elourenco 
+239 - 192.168.21.156 - Data: 19/04/17 Hora: 13:37:50 - Processo(s) liberado(s) para  - cbizzi 
+240 - 192.168.21.156 - Data: 19/04/17 Hora: 13:57:01 - Processo(s) liberado(s) para  - cbizzi 
+241 - 192.168.21.156 - Data: 20/04/17 Hora: 09:24:58 - Processo(s) liberado(s) para  - cbizzi 
+242 - 192.168.21.156 - Data: 20/04/17 Hora: 11:50:15 - Processo(s) liberado(s) para  - cbizzi 
+243 - 192.168.23.124 - Data: 20/04/17 Hora: 15:10:23 - Processo(s) liberado(s) para  - vfsantos 
+244 - 192.168.23.124 - Data: 20/04/17 Hora: 15:10:23 - Processo(s) liberado(s) para  - vfsantos 
+245 - 192.168.23.172 - Data: 24/04/17 Hora: 09:44:00 - Processo(s) liberado(s) para  - ecosta 
+246 - 192.168.26.173 - Data: 24/04/17 Hora: 13:19:48 - Processo(s) liberado(s) para  - crocha 
+247 - 192.168.26.173 - Data: 24/04/17 Hora: 13:24:30 - Processo(s) liberado(s) para  - crocha 
+248 - 192.168.23.113 - Data: 25/04/17 Hora: 13:55:42 - Nenhum processo localizado em - vdionisio 
+249 - 192.168.21.169 - Data: 25/04/17 Hora: 14:12:24 - Processo(s) liberado(s) para  - acrsousa 
+250 - 192.168.23.232 - Data: 25/04/17 Hora: 16:20:30 - Processo(s) liberado(s) para  - elourenco 
+251 - 192.168.21.113 - Data: 26/04/17 Hora: 09:10:07 - Processo(s) liberado(s) para  - dcichelli 
+252 - 192.168.21.113 - Data: 26/04/17 Hora: 09:11:28 - Nenhum processo localizado em - dcichelli 
+253 - 192.168.23.232 - Data: 26/04/17 Hora: 14:58:27 - Processo(s) liberado(s) para  - elourenco 
+254 - 192.168.21.169 - Data: 26/04/17 Hora: 17:04:19 - Processo(s) liberado(s) para  - acrsousa 
+255 - 192.168.23.58  - Data: 27/04/17 Hora: 09:14:47 - Nenhum processo localizado em - nrombi 
+256 - 192.168.23.113 - Data: 27/04/17 Hora: 12:25:37 - Nenhum processo localizado em - vdionisio 
+257 - 192.168.23.232 - Data: 28/04/17 Hora: 11:34:45 - Processo(s) liberado(s) para  - elourenco 
+258 - 192.168.21.177 - Data: 28/04/17 Hora: 16:09:50 - Processo(s) liberado(s) para  - cctoledo 
+259 - 192.168.21.156 - Data: 02/05/17 Hora: 11:04:45 - Processo(s) liberado(s) para  - cbizzi 
+260 - 192.168.23.113 - Data: 02/05/17 Hora: 15:53:08 - Nenhum processo localizado em - vdionisio 
+261 - 192.168.23.113 - Data: 02/05/17 Hora: 15:53:22 - Nenhum processo localizado em - vdionisio 
+262 - 192.168.21.169 - Data: 03/05/17 Hora: 07:49:49 - Processo(s) liberado(s) para  - acrsousa 
+263 - 192.168.21.177 - Data: 03/05/17 Hora: 11:34:41 - Nenhum processo localizado em - cctoledo 
+264 - 192.168.21.169 - Data: 03/05/17 Hora: 13:14:59 - Processo(s) liberado(s) para  - acrsousa 
+265 - 192.168.21.169 - Data: 03/05/17 Hora: 16:03:30 - Processo(s) liberado(s) para  - acrsousa 
+266 - 192.168.21.113 - Data: 03/05/17 Hora: 17:51:06 - Nenhum processo localizado em - dcichelli 
+267 - 192.168.23.61  - Data: 05/05/17 Hora: 13:11:43 - Processo(s) liberado(s) para  - fbaldo 
+268 - 192.168.23.61  - Data: 05/05/17 Hora: 13:13:10 - Nenhum processo localizado em - fbaldo
+269 - 192.168.23.93  - Data: 09/05/17 Hora: 11:25:59 - Processo(s) liberado(s) para  - mfrostirola
+270 - 192.168.21.113 - Data: 09/05/17 Hora: 14:45:51 - Processo(s) liberado(s) para  - dcichelli
+271 - 192.168.21.177 - Data: 09/05/17 Hora: 17:35:04 - Processo(s) liberado(s) para  - cctoledo
+272 - 192.168.23.172 - Data: 10/05/17 Hora: 08:38:16 - Nenhum processo localizado em - ecosta
+273 - 192.168.21.156 - Data: 10/05/17 Hora: 15:03:58 - Processo(s) liberado(s) para  - cbizzi
+274 - 192.168.23.93  - Data: 10/05/17 Hora: 16:59:45 - Nenhum processo localizado em - mfrostirola
+275 - 192.168.21.156 - Data: 11/05/17 Hora: 08:55:12 - Processo(s) liberado(s) para  - cbizzi
+276 - 192.168.21.186 - Data: 11/05/17 Hora: 13:29:20 - Nenhum processo localizado em - amiguel
+277 - 192.168.23.24  - Data: 11/05/17 Hora: 13:58:02 - Nenhum processo localizado em - rfnazatto
+278 - 192.168.21.169 - Data: 11/05/17 Hora: 17:02:47 - Processo(s) liberado(s) para  - acrsousa
+279 - 192.168.23.113 - Data: 12/05/17 Hora: 07:27:42 - Nenhum processo localizado em - vdionisio
+280 - 192.168.26.173 - Data: 13/05/17 Hora: 08:31:26 - Processo(s) liberado(s) para  - crocha
+281 - 192.168.23.232 - Data: 15/05/17 Hora: 07:23:50 - Nenhum processo localizado em - elourenco
+282 - 192.168.21.177 - Data: 15/05/17 Hora: 11:57:41 - Nenhum processo localizado em - cctoledo
+283 - 192.168.26.173 - Data: 15/05/17 Hora: 14:40:24 - Processo(s) liberado(s) para  - crocha
+284 - 192.168.21.186 - Data: 16/05/17 Hora: 07:43:28 - Nenhum processo localizado em - amiguel
+285 - 192.168.23.113 - Data: 16/05/17 Hora: 10:14:03 - Nenhum processo localizado em - vdionisio
+286 - 192.168.23.96  - Data: 16/05/17 Hora: 13:42:36 - Processo(s) liberado(s) para  - rmfsilva
+287 - 192.168.21.156 - Data: 17/05/17 Hora: 09:12:47 - Processo(s) liberado(s) para  - cbizzi
+*
+288 - 192.168.23.232 - Data: 17/05/17 Hora: 14:06:44 - Processo(s) liberado(s) para  - elourenco
+289 - 192.168.23.23  - Data: 17/05/17 Hora: 14:19:10 - Nenhum processo localizado em - lzanuncio
+290 - 192.168.23.96  - Data: 17/05/17 Hora: 15:09:44 - Processo(s) liberado(s) para  - rmfsilva
+291 - 192.168.23.24  - Data: 18/05/17 Hora: 07:27:24 - Nenhum processo localizado em - rfnazatto
+292 - 192.168.23.232 - Data: 18/05/17 Hora: 08:01:35 - Processo(s) liberado(s) para  - elourenco

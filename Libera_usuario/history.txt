@@ -1,0 +1,40 @@
+1.1
+Inserido o GIF "carregando.gif"
+
+2.0
+Foi alterado o Layout
+
+2.1
+Mesmo layout é exibido em todas as paginas
+Melhoria na logica de exibição de pagina
+Css distribuido entre arquivo chrome.css e ie.css
+Correção de Bugs
+Corrigido links do css e imagens
+Acertado nome do arquivo libera_usuario.html
+Criada a pasta logs para organizar melhor os logs
+Log do E-comex arrumado
+css para o Firefox corrigido
+
+2.2
+Ao desbloquear o numero do contador não vai para o log
+O contador irá contar qualquer desbloqueio
+
+2.3
+Inserido botão de ajuda
+Inserido favicon
+Alterado estrutura de pastas de log separando oracle e ecomex
+Incluido cabeçalho no log do ecomex
+Includo no cabalho de ambos os sistemas o total de visitantes
+Cabeçalho é atualizado em ambos os logs
+Corrigido Bugs
+
+2.4
+Inserido botão de ajuda em todas as telas
+Incluido nova mensagem de erro
+DEV-ORACLE incluido
+Envia e-mail a operacao a cada 100 desbloqueios
+Envia e-mail caso o liberausuario não consiga acessar o banco mais que 5 vezes
+
+3.0
+Layout alterado
+log em arquivo .html
