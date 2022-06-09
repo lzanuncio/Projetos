@@ -1,5 +1,6 @@
-[09:47] Luis Fernando Zanuncio
-Projeto: Sistema de chamado / Fluxo de Requisiçõesbanco: Postgree
-back: Node com Javascript, Python, Go Lang
+
+Projeto: Sistema de venda de ingressos / Fluxo de Requisiçõesbanco: Postgree
+back: Node com Javascript, Python, Go Lang - ou node.js
 front: react
 app: flutter
+API: docker
