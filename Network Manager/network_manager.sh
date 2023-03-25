@@ -7,8 +7,8 @@
 # Historico de revisoes
 # Versao 1.0 - Juncao do NMANUTS e Libera
 # Versaoes intermediarias - funcionalidades foram adicionadas
-# Versao 2.0 - Faz todas as rotinas relacionadas aos usuarios no Lambda e Sigma, no que se refere ao Samba, bat e CIA
-# Versao 2.1 - Alterado apenas para realizar um loop e n�o fechar o sistema ao finalizar.
+# Versao 2.0 - Faz todas as rotinas relacionadas aos usuarios no Servidor1 e Servidor2, no que se refere ao Samba, bat e CIA
+# Versao 2.1 - Alterado apenas para realizar um loop e não fechar o sistema ao finalizar.
 
 # As versoes intermediarias encontram-se na pasta net_old. 
 # Algumas apresentam determinados bugs que foram corrigidos nas versoes posteriores. Cuidado ao utilizar
@@ -43,10 +43,10 @@ i=0
 veremail=0
 SRC=0
 CONTVER=0
-rest_lambda=0
-rest_sigma=0
-narq_lambda=""
-narq_sigma=""
+rest_Servidor1=0
+rest_Servidor2=0
+narq_Servidor1=""
+narq_Servidor2=""
 mapeamentos_comentados=0
 
 data=`date +%d-%m-%y`
@@ -59,17 +59,17 @@ LOG=/root/shellpro/operacao/logs/network_manager_$$_$data.log
 # 0 - Verifica se o usuario e aprovador de algum recurso, usado pela pesquisa e exclusao de mapeamentos e usuario
 TesteUsuarioAprovador(){
 	
-	# verifica se o usuario e aprovador de algum recurso no lambda
-	aprovaddor_lambda=$(cat /etc/samba/smb.conf |grep $user |wc -l)
-	if [ $aprovaddor_lambda == 0 ]; then
+	# verifica se o usuario e aprovador de algum recurso no Servidor1
+	aprovaddor_Servidor1=$(cat /etc/samba/smb.conf |grep $user |wc -l)
+	if [ $aprovaddor_Servidor1 == 0 ]; then
 		aprovador=0
 	else
 		aprovador=1
 	fi
 	
-	# verifica se o usuario e aprovador de algum recurso no Sigma
-	aprovaddor_sigma=$(ssh sigma cat /etc/samba/smb.conf |grep $user |wc -l)
-	if [ $aprovaddor_sigma == 0 ]; then
+	# verifica se o usuario e aprovador de algum recurso no Servidor2
+	aprovaddor_Servidor2=$(ssh Servidor2 cat /etc/samba/smb.conf |grep $user |wc -l)
+	if [ $aprovaddor_Servidor2 == 0 ]; then
 		aprovador=0
 	else
 		aprovador=1
@@ -80,7 +80,7 @@ TesteUsuarioAprovador(){
 }
 
 # 0 - Procedure que verifica se o usuario existe, abortando o script caso nao exista
-TestaUsuarioExisteLambda(){
+TestaUsuarioExisteServidor1(){
 
 	#testa se algum login foi digitado, se a variavel user nao esta vazia
 	if [ -z $user ]; then
@@ -95,7 +95,7 @@ TestaUsuarioExisteLambda(){
 		then
 			cat /etc/passwd |grep -i /$user: | awk -F: ' $1 ~ /'$user'/  { print $1 ", " $5 }'
 			echo -e " "
-			echo -e " - Mais de um usuario foi encontrado no Lambda, favor confirmar o login do usuario que deseja localizar - 502" |tee -a $LOG
+			echo -e " - Mais de um usuario foi encontrado no Servidor1, favor confirmar o login do usuario que deseja localizar - 502" |tee -a $LOG
 			echo -e " "
 			read user
 			#testa se algum login foi digitado, se a variavel user nao esta vazia
@@ -108,14 +108,14 @@ TestaUsuarioExisteLambda(){
 			#nao tendo localizado varios usuarios, vai ver se nenhum foi encontrado
 			cat /etc/passwd |grep /$user: >/dev/null
 			if [ $? != 0 ]; then
-				echo -e " - $user NAO existe no Lambda - 506" |tee -a $LOG
+				echo -e " - $user NAO existe no Servidor1 - 506" |tee -a $LOG
 				exit
 			else
 				#pega o nome do usuario
-				name_lambda=`cat /etc/passwd | grep /$user: |cut -d":" -f5`
+				name_Servidor1=`cat /etc/passwd | grep /$user: |cut -d":" -f5`
 
 				#testa se encontrou algum nome de usuario, depois de ter encontrado algum usuario para verificar seu cadastro
-				if [ -z "$name_lambda" ]; then
+				if [ -z "$name_Servidor1" ]; then
 					echo "Nenhum nome de usuario foi localizado, favor confirmar o registro - 500" |tee -a $LOG
 					exit
 				fi
@@ -124,17 +124,17 @@ TestaUsuarioExisteLambda(){
 	fi
 }
 
-# 0 - Procedure que verifica se o usuario existe no Sigma
-TestaUsuarioExisteSigma(){
+# 0 - Procedure que verifica se o usuario existe no Servidor2
+TestaUsuarioExisteServidor2(){
 		#conta a quantidade de linhas encontradas que possuem o login informado
-		COUNT=`ssh sigma cat /etc/passwd |grep -i /$user: |wc -l`
+		COUNT=`ssh Servidor2 cat /etc/passwd |grep -i /$user: |wc -l`
 
 		#caso mais que linha (login) seja encontrada, ira confirmar qual dos logins deseja verificar
 		if [ $COUNT -gt 1 ]
 		then
-			ssh sigma cat /etc/passwd |grep -i /$user: | awk -F: ' $1 ~ /'$user'/  { print $1 ", " $5 }'
+			ssh Servidor2 cat /etc/passwd |grep -i /$user: | awk -F: ' $1 ~ /'$user'/  { print $1 ", " $5 }'
 			echo -e " "
-			echo -e " - Mais de um usuario foi encontrado no Sigma, favor confirmar o login do usuario que deseja localizar - 502" |tee -a $LOG
+			echo -e " - Mais de um usuario foi encontrado no Servidor2, favor confirmar o login do usuario que deseja localizar - 502" |tee -a $LOG
 			echo -e " "
 			read user
 			#testa se algum login foi digitado, se a variavel user nao esta vazia
@@ -147,16 +147,16 @@ TestaUsuarioExisteSigma(){
 
 		else
 			#nao tendo localizado varios usuarios, vai ver se nenhum foi encontrado
-			ssh sigma cat /etc/passwd |grep /$user: >/dev/null
+			ssh Servidor2 cat /etc/passwd |grep /$user: >/dev/null
 			if [ $? != 0 ]; then
-				echo -e " - $user NAO existe no Sigma - 506" |tee -a $LOG
+				echo -e " - $user NAO existe no Servidor2 - 506" |tee -a $LOG
 				exit
 			else
 				#pega o nome do usuario
-				name_sigma=`ssh sigma cat /etc/passwd | grep /$user: |cut -d":" -f5`
+				name_Servidor2=`ssh Servidor2 cat /etc/passwd | grep /$user: |cut -d":" -f5`
 
 				#testa se encontrou algum nome de usuario, depois de ter encontrado algum usuario para verificar seu cadastro
-				if [ -z "$name_sigma" ]; then
+				if [ -z "$name_Servidor2" ]; then
 					echo "Nenhum nome de usuario foi localizado, favor confirmar o registro - 500"|tee -a $LOG
 					exit
 				fi
@@ -243,15 +243,15 @@ subject: Usuario aprovador de recursos de rede
 
 Prezados(as),
 
-Informamos que devido a trasnferencia ou desligamento de $USUARIO, é necessário rever quem será o aprovador dos recursos abaixo:
+Informamos que devido a trasnferencia ou desligamento de $USUARIO, Ã© necessÃ¡rio rever quem serÃ¡ o aprovador dos recursos abaixo:
 
 $(PesquisaAprovador)
 
 Att.,
 
-Setor da Central de Operações
-Indústrias Romi S.A.
-+55 (19) 3455 9960 | +55 (19) 3455 9961
+Setor da Central de OperaÃ§Ãµes
+IndÃºstrias Romi S.A.
++55 (19)Â 3455 9960 |Â +55 (19)Â 3455 9961
 scop@romi.com
 
 END
@@ -267,17 +267,17 @@ END
 		#ira exibir as informacoes do usuario de mapeamentos
 		InformacaoUsuarioMapeamentos		
 
-		#caso o usuario nao tenha recurso nem no sigma nem no lambda:
-		if [ "$var_tmp1_rec_sigma" == "  " ] && [ "$var_tmp2_rec_lambda" == "  " ]; then
+		#caso o usuario nao tenha recurso nem no Servidor2 nem no Servidor1:
+		if [ "$var_tmp1_rec_Servidor2" == "  " ] && [ "$var_tmp2_rec_Servidor1" == "  " ]; then
 			echo " "
-			echo "Nenhum recurso a ser removido, tanto no Lambda quanto no Sigma" |tee -a $LOG
+			echo "Nenhum recurso a ser removido, tanto no Servidor1 quanto no Servidor2" |tee -a $LOG
 		#se tem algum recurso, vai perguntar se pode remover
 		else
 			echo " "
 			echo " Deseja excluir os mapeamentos de $name?"|tee -a $LOG
 			echo " "
-			echo "1 - Sigma"
-			echo "2 - Lambda"
+			echo "1 - Servidor2"
+			echo "2 - Servidor1"
 			echo "3 - Ambos"
 			echo "4 - Cancelar"
 
@@ -289,33 +289,33 @@ END
 				echo "Nenhum acesso foi removido"|tee -a $LOG
 			else
 				deleta_usuario="sim"
-				#daqui para frente remove os acessos no Sigma e Lambda
-				#SIGMA
+				#daqui para frente remove os acessos no Servidor2 e Servidor1
+				#Servidor2
 				if [ $OPC_ExcludeMap == 1 ] || [ $OPC_ExcludeMap == 3 ]; then	
-					if [ -z $recursos_sigma ]; then
+					if [ -z $recursos_Servidor2 ]; then
 						echo ""
-						echo "Nenhum recurso no Sigma" |tee -a $LOG
+						echo "Nenhum recurso no Servidor2" |tee -a $LOG
 					else
-						for x in `echo ${!recursos_sigma[*]}`;do
-							echo "Excluido o mapeamento ${recursos_sigma[$x]} do login $user no Sigma" |tee -a $LOG
-							ssh sigma "gpasswd -d $user ${recursos_sigma[$x]} >> /dev/null &
-							echo '${recursos_sigma[$x]}' >> /root/shellpro/revaccess/log/'$user'_'$data'.log"
+						for x in `echo ${!recursos_Servidor2[*]}`;do
+							echo "Excluido o mapeamento ${recursos_Servidor2[$x]} do login $user no Servidor2" |tee -a $LOG
+							ssh Servidor2 "gpasswd -d $user ${recursos_Servidor2[$x]} >> /dev/null &
+							echo '${recursos_Servidor2[$x]}' >> /root/shellpro/revaccess/log/'$user'_'$data'.log"
 						done
 					fi
 				fi
 
 					echo " "
 
-					#LAMBDA
+					#Servidor1
 					if [ $OPC_ExcludeMap == 2 ] || [ $OPC_ExcludeMap == 3 ]; then
-						if [ -z $recursos_lambda ]; then
+						if [ -z $recursos_Servidor1 ]; then
 							echo ""
-							echo "Nenhum recurso no lambda" |tee -a $LOG
+							echo "Nenhum recurso no Servidor1" |tee -a $LOG
 						else
-							for x in `echo ${!recursos_lambda[*]}`;do
-								echo "Excluido o mapeamento ${recursos_lambda[$x]} do login $user no lambda" |tee -a $LOG
-								gpasswd -d $user ${recursos_lambda[$x]} >> /dev/null &
-								echo ${recursos_lambda[$x]} >> /root/shellpro/revaccess/log/$user"_"$data".log"
+							for x in `echo ${!recursos_Servidor1[*]}`;do
+								echo "Excluido o mapeamento ${recursos_Servidor1[$x]} do login $user no Servidor1" |tee -a $LOG
+								gpasswd -d $user ${recursos_Servidor1[$x]} >> /dev/null &
+								echo ${recursos_Servidor1[$x]} >> /root/shellpro/revaccess/log/$user"_"$data".log"
 							done
 						fi
 					fi
@@ -329,7 +329,7 @@ END
 
 }
 
-# 2 - Procedure de Entrada de Informacões sobre o Usuario - resumida
+# 2 - Procedure de Entrada de InformacÃµes sobre o Usuario - resumida
 InformacaoUsuarioResumida(){
 
 	echo " "
@@ -341,14 +341,14 @@ InformacaoUsuarioResumida(){
 	SiglaSetor=`cat /etc/group |grep :$Cods: |cut -d":" -f1`
 	echo -e " $user - $name"|tee -a $LOG
 	echo -e " "
-	echo -e " Existe no Lambda, setor $SiglaSetor" |tee -a $LOG
+	echo -e " Existe no Servidor1, setor $SiglaSetor" |tee -a $LOG
 	echo -e " "
 	echo " A quota desse usuario e: "$(ExibeQuota) | tee -a $LOG
 	
 }
 
-# 3 - Procedure para criar usuario no Lambda
-CriacaoUsuarioLambda(){
+# 3 - Procedure para criar usuario no Servidor1
+CriacaoUsuarioServidor1(){
 
 	echo -e " Informe o login do novo usuario: " |tee -a $LOG
 	read user
@@ -365,12 +365,12 @@ CriacaoUsuarioLambda(){
 		#verifica se o usuario existe. Caso exista, aborta o script. Caso contrario, segue para criacao
 		cat /etc/passwd |grep /$user: >/dev/null
 		if [ $? == 0 ]; then
-			echo " Usuario ja existe no Lambda. Segue as informacoes resumidas:" |tee -a $LOG
+			echo " Usuario ja existe no Servidor1. Segue as informacoes resumidas:" |tee -a $LOG
 			InformacaoUsuarioResumida
 			exit
 		else
 			#solicita as informacoes para criacao
-			echo " Usuario nao existe no Lambda. Script ira prosseguir para a criacao" |tee -a $LOG
+			echo " Usuario nao existe no Servidor1. Script ira prosseguir para a criacao" |tee -a $LOG
 			echo -e " Informacces para criacao em servidores..." |tee -a $LOG
 			echo " "
 			echo -e " Entre com o nome COMPLETO do usuario" |tee -a $LOG
@@ -425,7 +425,7 @@ END
 					echo "Ocorreu um problema com a senha no samba ou expect. 103" |tee -a $LOG
 					exit
 				else
-					echo "Usuario criado com sucesso no Lambda" |tee -a $LOG
+					echo "Usuario criado com sucesso no Servidor1" |tee -a $LOG
 
 					#criacao da bat. Insere o mapeamento e o cabecalho de toda a bat
 					echo "title Mapeando Recursos de Rede, Aguarde!" > /home/netlogon/$user.bat
@@ -433,10 +433,10 @@ END
 					echo " " >> /home/netlogon/$user.bat
 					echo "net use * /delete /y" >> /home/netlogon/$user.bat
 					echo " " >> /home/netlogon/$user.bat
-					echo "net use b: \\\lambda\\$user $SenhaLogin /user:$user /persistent:no" >> /home/netlogon/$user.bat
+					echo "net use b: \\\Servidor1\\$user $SenhaLogin /user:$user /persistent:no" >> /home/netlogon/$user.bat
 					echo " " >> /home/netlogon/$user.bat
-					echo "rem \\\lambda\public\deploy\deploy.bat" >> /home/netlogon/$user.bat
-					echo "rem \\\lambda\public\deploy\backinfo\backInfo.exe" >> /home/netlogon/$user.bat
+					echo "rem \\\Servidor1\public\deploy\deploy.bat" >> /home/netlogon/$user.bat
+					echo "rem \\\Servidor1\public\deploy\backinfo\backInfo.exe" >> /home/netlogon/$user.bat
 					echo " " >> /home/netlogon/$user.bat
 
 					#mudanca da permissao da bat
@@ -485,21 +485,21 @@ END
 					dthora2=`date +%d-%m-%y'('%H:%M:%S')'`
 					echo "Operacao Finalizada em $dthora2" >> $log_migraUsuario
 
-					#criacao de usuario no sigma
-					CriacaoUsuarioSigma
+					#criacao de usuario no Servidor2
+					CriacaoUsuarioServidor2
 				fi
 			fi
 		fi
 	fi
 }
 
-# 4 - Procedure para criar usuario no Sigma 
-CriacaoUsuarioSigma(){
+# 4 - Procedure para criar usuario no Servidor2 
+CriacaoUsuarioServidor2(){
 
-	#verifica se o usuario ja existe no sigma
-	comp_sig=`ssh sigma cat /etc/passwd | grep -w $user: | cut -d: -f1`
+	#verifica se o usuario ja existe no Servidor2
+	comp_sig=`ssh Servidor2 cat /etc/passwd | grep -w $user: | cut -d: -f1`
 	if [ $user == "$comp_sig" ]; then
-		echo "Usuario ja existe no sigma" |tee -a $LOG
+		echo "Usuario ja existe no Servidor2" |tee -a $LOG
 		exit
 	else
 
@@ -512,7 +512,7 @@ CriacaoUsuarioSigma(){
 		#pega a senha atual do usuario pela bat		
 		cp /root/shellpro/migraUsuario/BatsMigradas/$user".bat" /home/netlogon
 		dos2unix /home/netlogon/$user".bat"
-		SenhaLogin=$(sed '/lambda\\'$user'/!d' /home/netlogon/$user".bat" | cut -f5 -d" ")
+		SenhaLogin=$(sed '/Servidor1\\'$user'/!d' /home/netlogon/$user".bat" | cut -f5 -d" ")
 		
 		# tira possiveis espacos
 		SenhaLogin=$(echo "$SenhaLogin" | sed 's/ //g')
@@ -522,15 +522,15 @@ CriacaoUsuarioSigma(){
 			echo -e "\e[m - Campos de preenchimento OBRIGATORIO!  " |tee -a $LOG
 			exit
 		else
-			#usuario sera adicionado no sigma, com o grupo criado e quota informada
-			ssh sigma "groupadd $SiglaSetor ; useradd -s /bin/false -g $SiglaSetor -c '$name' $user ; edquota -p padrao $user"
+			#usuario sera adicionado no Servidor2, com o grupo criado e quota informada
+			ssh Servidor2 "groupadd $SiglaSetor ; useradd -s /bin/false -g $SiglaSetor -c '$name' $user ; edquota -p padrao $user"
 
-			#expect ira preencher as senhas no servidor sigma
+			#expect ira preencher as senhas no servidor Servidor2
 /usr/bin/expect <<- END
 
 	set timeout -1
 
-	spawn ssh root@sigma
+	spawn ssh root@Servidor2
 
 	expect "#"
 	send -- "passwd $user\r"
@@ -561,14 +561,14 @@ END
 			sleep 1
 
 			#valida se a senha aplicada esta igual a senha informada
-			senha3_tmp=$(ssh sigma "pdbedit -w $user | cut -f 4 -d:")
-			senha4_tmp=$(ssh sigma "echo -n $SenhaLogin | iconv -t utf16le | openssl md4 | tr 'a-z' 'A-Z' | cut -f2 -d' '")
+			senha3_tmp=$(ssh Servidor2 "pdbedit -w $user | cut -f 4 -d:")
+			senha4_tmp=$(ssh Servidor2 "echo -n $SenhaLogin | iconv -t utf16le | openssl md4 | tr 'a-z' 'A-Z' | cut -f2 -d' '")
 
 			if [ -z $senha3_tmp ] || [ $senha3_tmp != $senha4_tmp ]; then
 				echo "Ocorreu um problema com a senha no samba ou expect. 103" |tee -a $LOG
 				exit
 			else
-				echo "Usuario criado com sucesso no Sigma" |tee -a $LOG
+				echo "Usuario criado com sucesso no Servidor2" |tee -a $LOG
 			fi
 		fi
 	fi
@@ -642,9 +642,9 @@ Informamos que devido ao desligamento do(a) funcionario(a) $DESLIGADO, os arquiv
 
 Att.,
 
-Setor da Central de Operações
-Indústrias Romi S.A.
-+55 (19) 3455 9960 | +55 (19) 3455 9961
+Setor da Central de OperaÃ§Ãµes
+IndÃºstrias Romi S.A.
++55 (19)Â 3455 9960 |Â +55 (19)Â 3455 9961
 scop@romi.com
 
 END
@@ -661,7 +661,7 @@ END
 			smbpasswd -x $user
 			userdel -r $user
 
-			ssh sigma "smbpasswd -x $user
+			ssh Servidor2 "smbpasswd -x $user
 			userdel -r $user"
 			
 			echo "Removido em ";date;id $user >>/var/log/removidos.log | tee -a $LOG
@@ -681,30 +681,30 @@ PesquisaAprovador (){
 	TesteUsuarioAprovador
 	if [ "$aprovador" == 0 ]; then
 		echo " "
-		echo "Usuario nao e aprovador de recursos nem no Sigma nem no Lambda" |tee -a $LOG
+		echo "Usuario nao e aprovador de recursos nem no Servidor2 nem no Servidor1" |tee -a $LOG
 	else
 		#verifica se possui mais de 0 grupos em que e aprovador
 		COUNT=`cat /etc/samba/smb.conf |grep -w $user |wc -l`
 		if [ $COUNT == 0 ]; then
 			echo " "
-			echo "Usuario $user nao e aprovador de nenhum recurso no Lambda" |tee -a $LOG
+			echo "Usuario $user nao e aprovador de nenhum recurso no Servidor1" |tee -a $LOG
 		else
 			echo " "
-			echo "Usuario $user e aprovador no Lambda de:" |tee -a $LOG
+			echo "Usuario $user e aprovador no Servidor1 de:" |tee -a $LOG
 			echo " "
 			cat /etc/samba/smb.conf | grep -B1 $user | sed '/^$\|'$user'\|--\|#/d'
 		fi
 		
 		#verifica se possui mais de 0 grupos em que e aprovador
-		COUNT2=`ssh sigma cat /etc/samba/smb.conf |grep -w $user |wc -l`
+		COUNT2=`ssh Servidor2 cat /etc/samba/smb.conf |grep -w $user |wc -l`
 		if [ $COUNT2 == 0 ]; then
 			echo " "
-			echo "Usuario $user nao e aprovador de nenhum recurso no Sigma" |tee -a $LOG
+			echo "Usuario $user nao e aprovador de nenhum recurso no Servidor2" |tee -a $LOG
 		else
 			echo " "
-			echo "Usuario $user e aprovador no Sigma de:" |tee -a $LOG
+			echo "Usuario $user e aprovador no Servidor2 de:" |tee -a $LOG
 			echo " "
-			ssh sigma "cat /etc/samba/smb.conf | grep -B1 $user | sed '/^$\|'$user'\|--/d'"
+			ssh Servidor2 "cat /etc/samba/smb.conf | grep -B1 $user | sed '/^$\|'$user'\|--/d'"
 			echo " "
 		fi
 	fi
@@ -719,8 +719,8 @@ LiberacaoRecursos(){
 	
 
 
-	#verifica se o usuario esta cadastrado no Sigma
-	TestaUsuarioExisteSigma
+	#verifica se o usuario esta cadastrado no Servidor2
+	TestaUsuarioExisteServidor2
 
 	#verifica quais letras podem ser utilizadas para a liberacao
 	VerificaLetrasDisponiveis
@@ -752,7 +752,7 @@ LiberacaoRecursos(){
 		# deixa a letra todo em minusculo
 		letra=$(echo "$letra"| tr 'A-Z' 'a-z')
 			
-		#verifica se a letra informada é uma das utilizadas, liberado a primeira disponivel caso seja
+		#verifica se a letra informada Ã© uma das utilizadas, liberado a primeira disponivel caso seja
 		a=0
 		disponivel=0
 		for a in `echo ${!letras_livres[*]}`;do			
@@ -770,8 +770,8 @@ LiberacaoRecursos(){
 		echo " "
 		echo " Escolha o servidor"
 		echo " "
-		echo " 1 - Sigma"
-		echo " 2 - Lambda"
+		echo " 1 - Servidor2"
+		echo " 2 - Servidor1"
 		echo " 3 - Cancelar"		
 		read servidor
 
@@ -783,8 +783,8 @@ LiberacaoRecursos(){
 		echo $servidor" "$smb >> $LOG
 			
 		case $servidor in
-			1|s|S)server="sigma"
-				compsamb=`ssh sigma cat /etc/group | sed 's/^\|$\|:/,/g' | grep ','$smb'_rx,' | rev | cut -f2-5 -d'_' | rev | sed 's/,//g'`
+			1|s|S)server="Servidor2"
+				compsamb=`ssh Servidor2 cat /etc/group | sed 's/^\|$\|:/,/g' | grep ','$smb'_rx,' | rev | cut -f2-5 -d'_' | rev | sed 's/,//g'`
 				if [ "$smb" == "$compsamb" ]; then
 					localizou=1
 				else
@@ -792,7 +792,7 @@ LiberacaoRecursos(){
 				fi						
 			;;
 
-			2|l|L)server="lambda"
+			2|l|L)server="Servidor1"
 				compsamb=`cat /etc/group | sed 's/^\|$\|:/,/g' | grep ','$smb'_rx,' | rev | cut -f2-5 -d'_' | rev | sed 's/,//g'`
 				if [ "$smb" == "$compsamb" ]; then
 					localizou=1
@@ -838,18 +838,18 @@ LiberacaoRecursos(){
 			esac
 
 			#verifica se o usuario ja possui o recurso liberado, removendo o de permissao diferente quando aplicado e adicionando o servidor
-			if [ $server == "sigma" ]; then
-				COUNT3=`ssh sigma cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao | wc -l`			
+			if [ $server == "Servidor2" ]; then
+				COUNT3=`ssh Servidor2 cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao | wc -l`			
 				if [ $COUNT3 == 1 ]; then
 					echo "Recurso ja esta liberado"|tee -a $LOG
 					ReorganizaBat
 				else
-					COUNT4=`ssh sigma cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao_inversa | wc -l`
+					COUNT4=`ssh Servidor2 cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao_inversa | wc -l`
 					if [ $COUNT4 == 1 ]; then
 						echo "Removendo atual acesso com permissao difetente"|tee -a $LOG
-						ssh sigma gpasswd -d $user $smb"_"$liberacao_inversa
+						ssh Servidor2 gpasswd -d $user $smb"_"$liberacao_inversa
 					fi
-					ssh sigma gpasswd -a $user $smb"_"$liberacao
+					ssh Servidor2 gpasswd -a $user $smb"_"$liberacao
 					echo "Recurso foi Liberado"|tee -a $LOG
 				fi
 			else
@@ -876,7 +876,7 @@ LiberacaoRecursos(){
 				dos2unix /home/netlogon/$user".bat"
 
 				#pega a senha da bat, insere a linha do novo recurso liberado e ordena por ordem alfabetica
-				SenhaLogin=$(sed '/lambda\\'$user'/!d' /home/netlogon/$user".bat" | cut -f5 -d" ")
+				SenhaLogin=$(sed '/Servidor1\\'$user'/!d' /home/netlogon/$user".bat" | cut -f5 -d" ")
 				echo 'net use '$letra': \\'$server'\'$smb' '$SenhaLogin' /user:'$user' /persistent:no' >> /home/netlogon/$user".bat"
 					
 				unix2dos /home/netlogon/$user".bat"
@@ -905,19 +905,19 @@ subject: Chamado - Liberacao de Recurso de Rede
 
 Prezado(a),
 
-Informamos que foi concluída a liberação de acesso ao recurso de rede $smb para "$name", conforme sua solicitação através do sistema Litiris. 
+Informamos que foi concluÃ­da a liberaÃ§Ã£o de acesso ao recurso de rede $smb para "$name", conforme sua solicitaÃ§Ã£o atravÃ©s do sistema Litiris. 
 
-Não será necessária nenhuma ação adicional, pois o recurso de rede será automaticamente mapeado nas próximas vezes que o logon no Windows for executado.
+NÃ£o serÃ¡ necessÃ¡ria nenhuma aÃ§Ã£o adicional, pois o recurso de rede serÃ¡ automaticamente mapeado nas prÃ³ximas vezes que o logon no Windows for executado.
 
-Lembramos que o acesso é individual e intransferível, devendo ser utilizado somente no computador do usuário destinatário deste e-mail.
+Lembramos que o acesso Ã© individual e intransferÃ­vel, devendo ser utilizado somente no computador do usuÃ¡rio destinatÃ¡rio deste e-mail.
 
-Em caso de dúvida ou dificuldade contate o Setor da Central de Operações.
+Em caso de dÃºvida ou dificuldade contate o Setor da Central de OperaÃ§Ãµes.
 
 Att.,
 
-Setor da Central de Operações
-Indústrias Romi S.A.
-+55 (19) 3455 9960 | +55 (19) 3455 9961
+Setor da Central de OperaÃ§Ãµes
+IndÃºstrias Romi S.A.
++55 (19)Â 3455 9960 |Â +55 (19)Â 3455 9961
 scop@romi.com
 
 END
@@ -929,59 +929,59 @@ END
 RestAcesso(){
 
 	# pega qual o arquivo de log de revisao de acesso mais recente
-	narq_lambda=$(cd /root/shellpro/revaccess/log; ls -t $user'_'* | head -1)
-	narq_sigma=$(ssh sigma "cd /root/shellpro/revaccess/log; ls -t $user'_'* | head -1")
+	narq_Servidor1=$(cd /root/shellpro/revaccess/log; ls -t $user'_'* | head -1)
+	narq_Servidor2=$(ssh Servidor2 "cd /root/shellpro/revaccess/log; ls -t $user'_'* | head -1")
 	
-	if [ -z "$narq_lambda" ] && [ -z "$narq_sigma" ]; then
-		echo "Nao ha registros de acesso revogados no Lambda e Sigma para este usuario. Finalizando procedure" | tee -a $LOG
+	if [ -z "$narq_Servidor1" ] && [ -z "$narq_Servidor2" ]; then
+		echo "Nao ha registros de acesso revogados no Servidor1 e Servidor2 para este usuario. Finalizando procedure" | tee -a $LOG
 		exit
 	else
-		if [ -n "$narq_lambda" ] && [ -n "$narq_sigma" ]; then
-			if [ "$narq_lambda" != "$narq_sigma" ]; then
+		if [ -n "$narq_Servidor1" ] && [ -n "$narq_Servidor2" ]; then
+			if [ "$narq_Servidor1" != "$narq_Servidor2" ]; then
 			
 				# obtem as datas dos arquivos mais recentes de revisao (acessos perdidos) do usuario
-				date_lambda=$(date -r /root/shellpro/revaccess/log/$narq_lambda +%Y%m%d)
-				date_sigma=$(ssh sigma "date -r /root/shellpro/revaccess/log/$narq_sigma +%Y%m%d")
+				date_Servidor1=$(date -r /root/shellpro/revaccess/log/$narq_Servidor1 +%Y%m%d)
+				date_Servidor2=$(ssh Servidor2 "date -r /root/shellpro/revaccess/log/$narq_Servidor2 +%Y%m%d")
 
-				if [  "$date_lambda" -gt "$date_sigma" ];then
-					echo "Data da revisao no Lambda e mais recente do que no Sigma" | tee -a $LOG
-					narq=$narq_lambda
-					rest_lambda=1	
+				if [  "$date_Servidor1" -gt "$date_Servidor2" ];then
+					echo "Data da revisao no Servidor1 e mais recente do que no Servidor2" | tee -a $LOG
+					narq=$narq_Servidor1
+					rest_Servidor1=1	
 				else
-					echo "Data da revisao no Sigma e mais recente do que no Lambda" | tee -a $LOG
-					narq=$narq_sigma
-					rest_sigma=1
+					echo "Data da revisao no Servidor2 e mais recente do que no Servidor1" | tee -a $LOG
+					narq=$narq_Servidor2
+					rest_Servidor2=1
 				fi
 			else
 				echo "Datas mais recentes de revisao de mapeamentos coincidem" | tee -a $LOG
-				narq=$narq_lambda
-				rest_lambda=1
-				rest_sigma=1
+				narq=$narq_Servidor1
+				rest_Servidor1=1
+				rest_Servidor2=1
 			fi
 		else
-			if [ -z "$narq_lambda" ]; then
-				echo " Nao ha revisoes de acesso no Lambda. Seguindo com o arquivo no Sigma" | tee -a $LOG
-				narq=$narq_sigma
-				rest_sigma=1
+			if [ -z "$narq_Servidor1" ]; then
+				echo " Nao ha revisoes de acesso no Servidor1. Seguindo com o arquivo no Servidor2" | tee -a $LOG
+				narq=$narq_Servidor2
+				rest_Servidor2=1
 			else
-				echo " Nao ha revisoes de acesso no Sigma. Seguindo com o arquivo no Lambda" | tee -a $LOG
-				narq=$narq_lambda
-				rest_lambda=1
+				echo " Nao ha revisoes de acesso no Servidor2. Seguindo com o arquivo no Servidor1" | tee -a $LOG
+				narq=$narq_Servidor1
+				rest_Servidor1=1
 			fi
 		fi
 		
 	fi
 	
-	#pega os acessos removidos do lambda
+	#pega os acessos removidos do Servidor1
 	echo " "
 	echo "Revisando os acessos de "$name" em "$narq | tee -a $LOG
 	echo " "
 	
-	#lambda
-	if [ $rest_lambda == 1 ]; then
+	#Servidor1
+	if [ $rest_Servidor1 == 1 ]; then
 		acessos=(${acessos[@]} `cat /root/shellpro/revaccess/log/$narq`)
 		
-		echo "Deseja liberar os acessos no Lambda abaixo? S/N" | tee -a $LOG
+		echo "Deseja liberar os acessos no Servidor1 abaixo? S/N" | tee -a $LOG
 		echo ""
 		cat /root/shellpro/revaccess/log/$narq
 		echo ""
@@ -989,7 +989,7 @@ RestAcesso(){
 		if [ "$resp" == "S" -o "$resp" == "s" ]; then
 			veremail=1
 			x=0
-			#libera os recursos no lambda
+			#libera os recursos no Servidor1
 			while [ $x != ${#acessos[@]} ]
 			do
 				echo "Removendo o acesso " ${acessos[$x]} >> $LOG
@@ -999,23 +999,23 @@ RestAcesso(){
 		fi
 	fi
 	
-	if [ $rest_sigma == 1 ]; then
-		#sigma
-		acessos_sigma=(${acessos_sigma[@]} `ssh sigma cat /root/shellpro/revaccess/log/$narq`)
+	if [ $rest_Servidor2 == 1 ]; then
+		#Servidor2
+		acessos_Servidor2=(${acessos_Servidor2[@]} `ssh Servidor2 cat /root/shellpro/revaccess/log/$narq`)
 		
-		echo "Deseja liberar os acessos no Sigma abaixo? S/N"
+		echo "Deseja liberar os acessos no Servidor2 abaixo? S/N"
 		echo ""
-		ssh sigma cat /root/shellpro/revaccess/log/$narq
+		ssh Servidor2 cat /root/shellpro/revaccess/log/$narq
 		echo ""
 		read resp
 		if [ "$resp" == "S" -o "$resp" == "s" ]; then
 			veremail=1
 			x=0
-			#libera os recursos no sigma
-			while [ $x != ${#acessos_sigma[@]} ]
+			#libera os recursos no Servidor2
+			while [ $x != ${#acessos_Servidor2[@]} ]
 			do
 				echo "Removendo o acesso " ${acessos[$x]} >> $LOG
-				ssh sigma gpasswd -a $user ${acessos_sigma[$x]}
+				ssh Servidor2 gpasswd -a $user ${acessos_Servidor2[$x]}
 				let x=x+1
 			done
 		fi
@@ -1040,17 +1040,17 @@ subject: Chamado - Restabelecimento de Recursos de Rede
 
 Prezado(a),
 
-O acesso aos Recursos de Rede do usuário "$name" foram restabelecidos, conforme solicitado em Litiris.
+O acesso aos Recursos de Rede do usuÃ¡rio "$name" foram restabelecidos, conforme solicitado em Litiris.
 
-Para que as alterações entrem em vigor, é necessario fazer logoff ou reiniciar o computador.
+Para que as alteraÃ§Ãµes entrem em vigor, Ã© necessario fazer logoff ou reiniciar o computador.
 
-Caso os recursos não apareçam automaticamente, favor entrar em contato com o Setor da Central de Operações.
+Caso os recursos nÃ£o apareÃ§am automaticamente, favor entrar em contato com o Setor da Central de OperaÃ§Ãµes.
 
 Atenciosamente,
 
-Setor da Central de Operações
-Indústrias Romi S.A.
-+55 (19) 3455 9960 | +55 (19) 3455 9961
+Setor da Central de OperaÃ§Ãµes
+IndÃºstrias Romi S.A.
++55 (19)Â 3455 9960 |Â +55 (19)Â 3455 9961
 scop@romi.com
 
 END
@@ -1085,19 +1085,19 @@ ReorganizaBat (){
 		migrado=`cat /home/netlogon/$user".bat" | grep -i "migrado para ambiente"`
 		
 		#pega a senha da bat
-		SenhaLogin=$(sed '/lambda\\'$user'/!d' /home/netlogon/$user".bat" | cut -f5 -d" ")
+		SenhaLogin=$(sed '/Servidor1\\'$user'/!d' /home/netlogon/$user".bat" | cut -f5 -d" ")
 
 		#Deixa a bat toda em minusculo
-		sed -i 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÉÊÍÓÔÕÚÇ/abcdefghijklmnopqrstuvwxyzàáâãéêíóôõúç/' /home/netlogon/$user".bat"
+		sed -i 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZÃÃÃÃÃÃÃÃÃÃÃÃ/abcdefghijklmnopqrstuvwxyzÃ Ã¡Ã¢Ã£Ã©ÃªÃ­Ã³Ã´ÃµÃºÃ§/' /home/netlogon/$user".bat"
 
 		
 		# deleta AMBOS os espacos em branco final e inicial de cada linha. Remove repetidos rem
 		sed -i 's/ $//g;/^$/d;s/rem.*rem/rem/;s/^[ \t]*//;s/[ \t]*$//g' /home/netlogon/$user".bat"
 		
 		#pega outas coisas
-		mapeamentos_outros=$(sed '/echo off/d;/ migrado /d;/title /d;/ \/del/d;/pause/d;/deploy/d;/\\sigma\\/d;/\\lambda\\/d' /home/netlogon/$user".bat")
+		mapeamentos_outros=$(sed '/echo off/d;/ migrado /d;/title /d;/ \/del/d;/pause/d;/deploy/d;/\\Servidor2\\/d;/\\Servidor1\\/d' /home/netlogon/$user".bat")
 		
-		# cabeçalho de toda bat
+		# cabeÃ§alho de toda bat
 		echo "title Mapeando Recursos de Rede, Aguarde!" > /home/netlogon/$user"_new.bat"
 		echo "@echo off" >> /home/netlogon/$user"_new.bat"
 		echo " " >> /home/netlogon/$user"_new.bat"	
@@ -1106,24 +1106,24 @@ ReorganizaBat (){
 
 		######################### fim do cabecalho e inicio da parte que atualiza os mapeamentos liberados ############
 		
-		#pega os recursos do samba liberados para o usuario no Sigma
-		recursos_sigma1=(${recursos_sigma1[@]} `ssh sigma "cat /etc/group | sed '/#/d;s/^\|$\|:/,/g;s/_rx\|_rw\|_admin//g' | grep ',$user,' | cut -d',' -f2"`)
+		#pega os recursos do samba liberados para o usuario no Servidor2
+		recursos_Servidor21=(${recursos_Servidor21[@]} `ssh Servidor2 "cat /etc/group | sed '/#/d;s/^\|$\|:/,/g;s/_rx\|_rw\|_admin//g' | grep ',$user,' | cut -d',' -f2"`)
 
-		#pega os recursos do samba liberados para o usuario no Lambda
-		recursos_lambda1=(${recursos_lambda1[@]} `cat /etc/group | sed '/#/d;s/^\|$\|:/,/g;s/_rx\|_rw\|_admin//g' | grep ",$user," | cut -d',' -f2`)
+		#pega os recursos do samba liberados para o usuario no Servidor1
+		recursos_Servidor11=(${recursos_Servidor11[@]} `cat /etc/group | sed '/#/d;s/^\|$\|:/,/g;s/_rx\|_rw\|_admin//g' | grep ",$user," | cut -d',' -f2`)
 			
 		# Pega da bat os recursos atualmente mencionados
-		mapeamentos_ativos_sigma=(${mapeamentos_ativos_sigma[@]} $(sed '/lambda\\'$user'/d;/user:/!d;/persistent:/!d;/sigma/!d;s/rem//g;s/^ //g;s/\\\\sigma\\//g' /home/netlogon/$user".bat" | cut -f4 -d" "))
-		mapeamentos_ativos_lambda=(${mapeamentos_ativos_lambda[@]} $(sed '/lambda\\'$user'/d;/user:/!d;/persistent:/!d;/lambda/!d;s/rem//g;s/^ //g;s/\\\\lambda\\//g' /home/netlogon/$user".bat" | cut -f4 -d" "))
+		mapeamentos_ativos_Servidor2=(${mapeamentos_ativos_Servidor2[@]} $(sed '/Servidor1\\'$user'/d;/user:/!d;/persistent:/!d;/Servidor2/!d;s/rem//g;s/^ //g;s/\\\\Servidor2\\//g' /home/netlogon/$user".bat" | cut -f4 -d" "))
+		mapeamentos_ativos_Servidor1=(${mapeamentos_ativos_Servidor1[@]} $(sed '/Servidor1\\'$user'/d;/user:/!d;/persistent:/!d;/Servidor1/!d;s/rem//g;s/^ //g;s/\\\\Servidor1\\//g' /home/netlogon/$user".bat" | cut -f4 -d" "))
 			
 		#calcula quantos recursos de rede o usuario dispoe
-		A=`echo ${#recursos_sigma1[*]}`
-		B=`echo ${#recursos_lambda1[*]}`	
+		A=`echo ${#recursos_Servidor21[*]}`
+		B=`echo ${#recursos_Servidor11[*]}`	
 		let C="$A + $B"
 		
 		#calcula quantos mapeamentos atualmente o usuario utiliza
-		D=`echo ${#mapeamentos_ativos_sigma[*]}`
-		E=`echo ${#mapeamentos_ativos_lambda[*]}`	
+		D=`echo ${#mapeamentos_ativos_Servidor2[*]}`
+		E=`echo ${#mapeamentos_ativos_Servidor1[*]}`	
 		let F="$D + $E"
 		
 		if [ $C -gt 22 ] || [ $F -gt 22 ]; then
@@ -1140,27 +1140,27 @@ ReorganizaBat (){
 			
 			echo "Sera verificado os acessos atuais do usuario e adequado ao liberado" |tee -a $LOG
 		
-			####         LAMBDA       ####
+			####         Servidor1       ####
 			
 			x=0
 			y=0
 			z=0
 			
-			#conferindo lambda
-			for x in `echo ${!recursos_lambda1[*]}`;do
+			#conferindo Servidor1
+			for x in `echo ${!recursos_Servidor11[*]}`;do
 				liberado=0
-				for y in `echo ${!mapeamentos_ativos_lambda[*]}`;do
-					if [ ${recursos_lambda1[$x]} == ${mapeamentos_ativos_lambda[$y]} ]; then
+				for y in `echo ${!mapeamentos_ativos_Servidor1[*]}`;do
+					if [ ${recursos_Servidor11[$x]} == ${mapeamentos_ativos_Servidor1[$y]} ]; then
 						liberado=1
 						#Tirando o comentario caso haja
-						sed -i '/'${recursos_lambda1[$x]}'/ s/rem //g' /home/netlogon/$user".bat"
-						y=`echo ${!mapeamentos_ativos_lambda[*]}`
+						sed -i '/'${recursos_Servidor11[$x]}'/ s/rem //g' /home/netlogon/$user".bat"
+						y=`echo ${!mapeamentos_ativos_Servidor1[*]}`
 					fi
 				done
 				if [ $liberado != 1 ]; then
 					#recurso nao consta na bat, liberar
-					echo "Recurso "${recursos_lambda1[$x]}" nao consta na bat, liberando"  |tee -a $LOG
-					echo 'net use '${letras_livres[$z]}': \\lambda\'${recursos_lambda1[$x]}' '$SenhaLogin' /user:'$user' /persistent:no' >> /home/netlogon/$user".bat"
+					echo "Recurso "${recursos_Servidor11[$x]}" nao consta na bat, liberando"  |tee -a $LOG
+					echo 'net use '${letras_livres[$z]}': \\Servidor1\'${recursos_Servidor11[$x]}' '$SenhaLogin' /user:'$user' /persistent:no' >> /home/netlogon/$user".bat"
 					let "z = z + 1"
 				fi
 			done
@@ -1168,40 +1168,40 @@ ReorganizaBat (){
 			x=0
 			y=0
 			
-			#agora confere se tem algo na bat que nao tem liberado no lambda
-			for x in `echo ${!mapeamentos_ativos_lambda[*]}`;do
+			#agora confere se tem algo na bat que nao tem liberado no Servidor1
+			for x in `echo ${!mapeamentos_ativos_Servidor1[*]}`;do
 				liberado=0
-				for y in `echo ${!recursos_lambda1[*]}`;do
-					if [ ${recursos_lambda1[$y]} == ${mapeamentos_ativos_lambda[$x]} ]; then
+				for y in `echo ${!recursos_Servidor11[*]}`;do
+					if [ ${recursos_Servidor11[$y]} == ${mapeamentos_ativos_Servidor1[$x]} ]; then
 						liberado=1
-						y=`echo ${!recursos_lambda1[*]}`
+						y=`echo ${!recursos_Servidor11[*]}`
 					fi
 				done
 				if [ $liberado != 1 ]; then
 					#recurso nao esta liberado no servidor, removendo da bat
-					echo "Recurso "${mapeamentos_ativos_lambda[$x]}" nao esta liberado no servidor, removendo da bat" |tee -a $LOG
-					sed -i '/'${mapeamentos_ativos_lambda[$x]}'/d' /home/netlogon/$user".bat"
+					echo "Recurso "${mapeamentos_ativos_Servidor1[$x]}" nao esta liberado no servidor, removendo da bat" |tee -a $LOG
+					sed -i '/'${mapeamentos_ativos_Servidor1[$x]}'/d' /home/netlogon/$user".bat"
 				fi
 			done
 			
 			x=0
 			y=0
 			
-			#remove mapeamentos repetidos do lambda, deixando apenas um
+			#remove mapeamentos repetidos do Servidor1, deixando apenas um
 			
 			x=0
 			y=0
 			i=0
 		
-			while [ $x -le ${#mapeamentos_ativos_lambda[*]} ]; do
+			while [ $x -le ${#mapeamentos_ativos_Servidor1[*]} ]; do
 				
 				y=$x
-				while [ $y -le ${#mapeamentos_ativos_lambda[*]} ]; do
+				while [ $y -le ${#mapeamentos_ativos_Servidor1[*]} ]; do
 					
-					if [ "${mapeamentos_ativos_lambda[$x]}" == "${mapeamentos_ativos_lambda[$y]}" ] && [ $x != $y ]; then
-						sed -i '/'${mapeamentos_ativos_lambda[$y]}'/{H;x;/^\n/d;g;}' /home/netlogon/$user".bat"
-						echo "Mapeamento "${mapeamentos_ativos_lambda[$y]}" repetido na bat, removido" |tee -a $LOG
-						mapeamentos_ativos_lambda[$y]=`date +%H%M%S`$i
+					if [ "${mapeamentos_ativos_Servidor1[$x]}" == "${mapeamentos_ativos_Servidor1[$y]}" ] && [ $x != $y ]; then
+						sed -i '/'${mapeamentos_ativos_Servidor1[$y]}'/{H;x;/^\n/d;g;}' /home/netlogon/$user".bat"
+						echo "Mapeamento "${mapeamentos_ativos_Servidor1[$y]}" repetido na bat, removido" |tee -a $LOG
+						mapeamentos_ativos_Servidor1[$y]=`date +%H%M%S`$i
 						((i++))
 						x=0
 						y=0
@@ -1213,26 +1213,26 @@ ReorganizaBat (){
 			let "x=x+1"
 			done
 
-			####     SIGMA     ####
+			####     Servidor2     ####
 
 			x=0
 			y=0
 
-			#conferindo sigma
-			for x in `echo ${!recursos_sigma1[*]}`;do
+			#conferindo Servidor2
+			for x in `echo ${!recursos_Servidor21[*]}`;do
 				liberado=0
-				for y in `echo ${!mapeamentos_ativos_sigma[*]}`;do
-					if [ ${recursos_sigma1[$x]} == ${mapeamentos_ativos_sigma[$y]} ]; then
+				for y in `echo ${!mapeamentos_ativos_Servidor2[*]}`;do
+					if [ ${recursos_Servidor21[$x]} == ${mapeamentos_ativos_Servidor2[$y]} ]; then
 						liberado=1
 						#Tirando o comentario caso haja
-						sed -i '/'${recursos_sigma1[$x]}'/ s/rem //g' /home/netlogon/$user".bat"
-						y=`echo ${!mapeamentos_ativos_sigma[*]}`
+						sed -i '/'${recursos_Servidor21[$x]}'/ s/rem //g' /home/netlogon/$user".bat"
+						y=`echo ${!mapeamentos_ativos_Servidor2[*]}`
 					fi
 				done
 				if [ $liberado != 1 ]; then
 					#recurso nao consta na bat, liberar
-					echo "Recurso "${recursos_sigma1[$x]}" nao consta na bat, liberando"  |tee -a $LOG
-					echo 'net use '${letras_livres[$z]}': \\sigma\'${recursos_sigma1[$x]}' '$SenhaLogin' /user:'$user' /persistent:no' >> /home/netlogon/$user".bat"
+					echo "Recurso "${recursos_Servidor21[$x]}" nao consta na bat, liberando"  |tee -a $LOG
+					echo 'net use '${letras_livres[$z]}': \\Servidor2\'${recursos_Servidor21[$x]}' '$SenhaLogin' /user:'$user' /persistent:no' >> /home/netlogon/$user".bat"
 					let "z = z + 1"
 				fi
 			done
@@ -1240,40 +1240,40 @@ ReorganizaBat (){
 			x=0
 			y=0
 
-			#agora confere se tem algo na bat que nao tem liberado no sigma
-			for x in `echo ${!mapeamentos_ativos_sigma[*]}`;do
+			#agora confere se tem algo na bat que nao tem liberado no Servidor2
+			for x in `echo ${!mapeamentos_ativos_Servidor2[*]}`;do
 				liberado=0
-				for y in `echo ${!recursos_sigma1[*]}`;do
-					if [ ${recursos_sigma1[$y]} == ${mapeamentos_ativos_sigma[$x]} ]; then
+				for y in `echo ${!recursos_Servidor21[*]}`;do
+					if [ ${recursos_Servidor21[$y]} == ${mapeamentos_ativos_Servidor2[$x]} ]; then
 						liberado=1
-						y=`echo ${!recursos_sigma1[*]}`
+						y=`echo ${!recursos_Servidor21[*]}`
 					fi
 				done
 				if [ $liberado != 1 ]; then
 					#recurso nao esta liberado no servidor, removendo da bat
-					echo "Recurso "${mapeamentos_ativos_sigma[$x]}" nao esta liberado no servidor, removendo da bat" |tee -a $LOG
-					sed -i '/'${mapeamentos_ativos_sigma[$x]}'/d'  /home/netlogon/$user".bat"
+					echo "Recurso "${mapeamentos_ativos_Servidor2[$x]}" nao esta liberado no servidor, removendo da bat" |tee -a $LOG
+					sed -i '/'${mapeamentos_ativos_Servidor2[$x]}'/d'  /home/netlogon/$user".bat"
 				fi
 			done
 
 			x=0
 			y=0
 
-			#remove mapeamentos repetidos do sigma, deixando apenas um
+			#remove mapeamentos repetidos do Servidor2, deixando apenas um
 
 			x=0
 			y=0
 			i=0
 
-			while [ $x -le ${#mapeamentos_ativos_sigma[*]} ]; do
+			while [ $x -le ${#mapeamentos_ativos_Servidor2[*]} ]; do
 
 				y=$x
-				while [ $y -le ${#mapeamentos_ativos_sigma[*]} ]; do
+				while [ $y -le ${#mapeamentos_ativos_Servidor2[*]} ]; do
 
-					if [ "${mapeamentos_ativos_sigma[$x]}" == "${mapeamentos_ativos_sigma[$y]}" ] && [ $x != $y ]; then
-						sed -i '/'${mapeamentos_ativos_sigma[$y]}'/{H;x;/^\n/d;g;}' /home/netlogon/$user".bat"
-						echo "Mapeamento "${mapeamentos_ativos_sigma[$y]}" repetido na bat, removido." |tee -a $LOG
-						mapeamentos_ativos_sigma[$y]=`date +%H%M%S`$i
+					if [ "${mapeamentos_ativos_Servidor2[$x]}" == "${mapeamentos_ativos_Servidor2[$y]}" ] && [ $x != $y ]; then
+						sed -i '/'${mapeamentos_ativos_Servidor2[$y]}'/{H;x;/^\n/d;g;}' /home/netlogon/$user".bat"
+						echo "Mapeamento "${mapeamentos_ativos_Servidor2[$y]}" repetido na bat, removido." |tee -a $LOG
+						mapeamentos_ativos_Servidor2[$y]=`date +%H%M%S`$i
 						((i++))
 						x=0
 						y=0
@@ -1332,8 +1332,8 @@ ReorganizaBat (){
 		echo " " >> /home/netlogon/$user"_new.bat"
 		
 		#coloca as informacoes de mapeamento para caso haja problema com o adc dc
-		echo "rem \\\lambda\public\deploy\deploy.bat" >> /home/netlogon/$user"_new.bat"
-		echo "rem \\\lambda\public\deploy\backinfo\backInfo.exe" >> /home/netlogon/$user"_new.bat"
+		echo "rem \\\Servidor1\public\deploy\deploy.bat" >> /home/netlogon/$user"_new.bat"
+		echo "rem \\\Servidor1\public\deploy\backinfo\backInfo.exe" >> /home/netlogon/$user"_new.bat"
 		echo " " >> /home/netlogon/$user"_new.bat"
 
 		#insere a informacao da migracao da bat
@@ -1356,8 +1356,8 @@ ReorganizaBat (){
 
 # 10 - Procedure usada quando deseja-se excluir um mapeamento em especifico
 ExcluirUnicoMapeamento(){
- 	#verifica se o usuario esta cadastrado no Sigma
-	TestaUsuarioExisteSigma
+ 	#verifica se o usuario esta cadastrado no Servidor2
+	TestaUsuarioExisteServidor2
 
 	echo "Voce esta removendo um recurso de $name" |tee -a $LOG
 	echo " "
@@ -1366,8 +1366,8 @@ ExcluirUnicoMapeamento(){
 	echo " "
 	echo " Escolha o servidor"
 	echo " "
-	echo " 1 - Sigma"
-	echo " 2 - Lambda"
+	echo " 1 - Servidor2"
+	echo " 2 - Servidor1"
 	echo " 3 - Cancelar"		
 	read servidor
 
@@ -1379,8 +1379,8 @@ ExcluirUnicoMapeamento(){
 	echo "OPC de Servidor "$servidor" recurso "$smb >> $LOG
 
 	case $servidor in
-		1|s|S)server="sigma"
-			compsamb=`ssh sigma cat /etc/group | grep -w $smb"_rx" | rev | cut -f2-5 -d"_" | rev | grep -v -`
+		1|s|S)server="Servidor2"
+			compsamb=`ssh Servidor2 cat /etc/group | grep -w $smb"_rx" | rev | cut -f2-5 -d"_" | rev | grep -v -`
 			if [ "$smb" = "$compsamb" ]; then
 				localizou=1
 			else
@@ -1388,7 +1388,7 @@ ExcluirUnicoMapeamento(){
 			fi						
 		;;
 
-		2|l|L)server="lambda"
+		2|l|L)server="Servidor1"
 			compsamb=`cat /etc/group | grep -w $smb"_rx" | rev | cut -f2-5 -d"_" | rev | grep -v -`
 			if [ "$smb" = "$compsamb" ]; then
 				localizou=1
@@ -1432,20 +1432,20 @@ ExcluirUnicoMapeamento(){
 
 		esac
 
-		#verifica se o usuario ja possui o recurso liberado, removendo o de permissao diferente quando aplicado e adicionando o servidor (no sigma)
-		if [ $server == "sigma" ]; then
+		#verifica se o usuario ja possui o recurso liberado, removendo o de permissao diferente quando aplicado e adicionando o servidor (no Servidor2)
+		if [ $server == "Servidor2" ]; then
 			
-			COUNT3=`ssh sigma cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao | wc -l`			
+			COUNT3=`ssh Servidor2 cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao | wc -l`			
 			
 			if [ $COUNT3 == 1 ]; then
 			
-				ssh sigma gpasswd -d $user $smb"_"$liberacao
+				ssh Servidor2 gpasswd -d $user $smb"_"$liberacao
 				echo "Recurso "$smb"_"$liberacao" Removido" |tee -a $LOG
 				
 			else
 			
 				echo "Usuario nao possui o recurso informado. Nada foi feito"|tee -a $LOG
-				COUNT4=`ssh sigma cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao_inversa | wc -l`			
+				COUNT4=`ssh Servidor2 cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao_inversa | wc -l`			
 				
 				if [ $COUNT4 == 1 ]; then
 					
@@ -1453,7 +1453,7 @@ ExcluirUnicoMapeamento(){
 					read resp
 					
 					if [ $resp == "S" -o $resp == "s" ];then
-						ssh sigma gpasswd -d $user $smb"_"$liberacao_inversa
+						ssh Servidor2 gpasswd -d $user $smb"_"$liberacao_inversa
 						echo "Recurso "$smb"_"$liberacao_inversa" Removido" |tee -a $LOG
 					fi
 	
@@ -1461,7 +1461,7 @@ ExcluirUnicoMapeamento(){
 
 			fi
 			
-		#verifica se o usuario ja possui o recurso liberado, removendo o de permissao diferente quando aplicado e adicionando o servidor (no lambda)
+		#verifica se o usuario ja possui o recurso liberado, removendo o de permissao diferente quando aplicado e adicionando o servidor (no Servidor1)
 		else
 			COUNT3=`cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao | wc -l`			
 			
@@ -1495,7 +1495,7 @@ ExcluirUnicoMapeamento(){
 	fi
 }
 
-# 11 - Procedure de Entrada de Informacões sobre o Usuario - Todos os mapeamentos e BAT
+# 11 - Procedure de Entrada de InformacÃµes sobre o Usuario - Todos os mapeamentos e BAT
 InformacaoUsuarioMapeamentos(){
 
 	#vai exibir os mapeamentos da bat do usuario, que foram salvos no arquivo de log abaixo
@@ -1505,7 +1505,7 @@ InformacaoUsuarioMapeamentos(){
 	echo " "
 	
 	#pega os mapeamentos na bat
-	sed '/user:/!d;/rem\|REM\|Rem/d;/lambda\\'$user'/d' /root/shellpro/migraUsuario/BatsMigradas/$user".bat" |tee -a $LOG
+	sed '/user:/!d;/rem\|REM\|Rem/d;/Servidor1\\'$user'/d' /root/shellpro/migraUsuario/BatsMigradas/$user".bat" |tee -a $LOG
 	echo ""
 	echo " Mapeamentos Inativos:" |tee -a $LOG
 	echo ""
@@ -1514,32 +1514,32 @@ InformacaoUsuarioMapeamentos(){
 	echo " "
 	echo " Ele possui os acessos abaixo habilitados nos servidores:" |tee -a $LOG
 	echo " "
-	echo " Sigma:"
+	echo " Servidor2:"
 	
-	#pega os recursos do samba liberados para o usuario no Sigma
-	recursos_sigma=(${recursos_sigma[@]} `ssh sigma "cat /etc/group | sed 's/^\|$\|:/,/g' | grep ',$user,' | cut -d',' -f2" | grep -v '#'`)
+	#pega os recursos do samba liberados para o usuario no Servidor2
+	recursos_Servidor2=(${recursos_Servidor2[@]} `ssh Servidor2 "cat /etc/group | sed 's/^\|$\|:/,/g' | grep ',$user,' | cut -d',' -f2" | grep -v '#'`)
 
-	if [ -z $recursos_sigma ]; then
+	if [ -z $recursos_Servidor2 ]; then
 		echo ""
-		echo "Nenhum recurso no Sigma" |tee -a $LOG
+		echo "Nenhum recurso no Servidor2" |tee -a $LOG
 	else
-		for x in `echo ${!recursos_sigma[*]}`;do
-			echo ${recursos_sigma[$x]} |tee -a $LOG
+		for x in `echo ${!recursos_Servidor2[*]}`;do
+			echo ${recursos_Servidor2[$x]} |tee -a $LOG
 		done
 	fi
 	
 	echo " "
-	echo " Lambda:"
+	echo " Servidor1:"
 	
-	#pega os recursos do samba liberados para o usuario no Lambda
-	recursos_lambda=(${recursos_lambda[@]} `cat /etc/group | sed 's/^\|$\|:/,/g' | grep ",$user," | cut -d',' -f2 | grep -v '#'`)
+	#pega os recursos do samba liberados para o usuario no Servidor1
+	recursos_Servidor1=(${recursos_Servidor1[@]} `cat /etc/group | sed 's/^\|$\|:/,/g' | grep ",$user," | cut -d',' -f2 | grep -v '#'`)
 
-	if [ -z $recursos_lambda ]; then
+	if [ -z $recursos_Servidor1 ]; then
 		echo ""
-		echo "Nenhum recurso no Lambda" |tee -a $LOG
+		echo "Nenhum recurso no Servidor1" |tee -a $LOG
 	else
-		for x in `echo ${!recursos_lambda[*]}`;do
-			echo ${recursos_lambda[$x]} |tee -a $LOG
+		for x in `echo ${!recursos_Servidor1[*]}`;do
+			echo ${recursos_Servidor1[$x]} |tee -a $LOG
 		done
 	fi
 }
@@ -1596,8 +1596,8 @@ LiberaRecursosLote (){
 	echo " "
 	echo " Escolha o servidor"
 	echo " "
-	echo " 1 - Sigma"
-	echo " 2 - Lambda"
+	echo " 1 - Servidor2"
+	echo " 2 - Servidor1"
 	echo " 3 - Cancelar"		
 	read servidor
 
@@ -1609,8 +1609,8 @@ LiberaRecursosLote (){
 	echo $servidor" "$smb >> $LOG
 	
 	case $servidor in
-		1|s|S)server="sigma"
-			compsamb=`ssh sigma cat /etc/group | grep -w $smb"_rx" | rev | cut -f2-5 -d"_" | rev | grep -v -`
+		1|s|S)server="Servidor2"
+			compsamb=`ssh Servidor2 cat /etc/group | grep -w $smb"_rx" | rev | cut -f2-5 -d"_" | rev | grep -v -`
 			if [ "$smb" = "$compsamb" ]; then
 				localizou=1
 			else
@@ -1618,7 +1618,7 @@ LiberaRecursosLote (){
 			fi						
 		;;
 
-		2|l|L)server="lambda"
+		2|l|L)server="Servidor1"
 			compsamb=`cat /etc/group | grep -w $smb"_rx" | rev | cut -f2-5 -d"_" | rev | grep -v -`
 			if [ "$smb" = "$compsamb" ]; then
 				localizou=1
@@ -1667,18 +1667,18 @@ LiberaRecursosLote (){
 		
 		exit
 		#verifica se o usuario ja possui o recurso liberado, removendo o de permissao diferente quando aplicado e adicionando o servidor
-		if [ $server == "sigma" ]; then
-			COUNT3=`ssh sigma cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao | wc -l`			
+		if [ $server == "Servidor2" ]; then
+			COUNT3=`ssh Servidor2 cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao | wc -l`			
 			if [ $COUNT3 == 1 ]; then
 				echo "Recurso ja esta liberado"|tee -a $LOG
 				ReorganizaBat
 			else
-				COUNT4=`ssh sigma cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao_inversa | wc -l`
+				COUNT4=`ssh Servidor2 cat /etc/group | sed 's/^\|$\|:/,/g' | grep ,$user, | grep $smb'_'$liberacao_inversa | wc -l`
 				if [ $COUNT4 == 1 ]; then
 					echo "Removendo atual acesso com permissao difetente"|tee -a $LOG
-					ssh sigma gpasswd -d $user $smb"_"$liberacao_inversa
+					ssh Servidor2 gpasswd -d $user $smb"_"$liberacao_inversa
 				fi
-				ssh sigma gpasswd -a $user $smb"_"$liberacao
+				ssh Servidor2 gpasswd -a $user $smb"_"$liberacao
 				echo "Recurso foi Liberado"|tee -a $LOG
 			fi
 		else
@@ -1704,7 +1704,7 @@ LiberaRecursosLote (){
 			#converte a bat para uso do linux
 			dos2unix /home/netlogon/$user".bat"
 			#pega a senha da bat, insere a linha do novo recurso liberado e ordena por ordem alfabetica
-			SenhaLogin=$(sed '/lambda\\'$user'/!d' /home/netlogon/$user".bat" | cut -f5 -d" ")
+			SenhaLogin=$(sed '/Servidor1\\'$user'/!d' /home/netlogon/$user".bat" | cut -f5 -d" ")
 			echo 'net use '$letra': \\'$server'\'$smb' '$SenhaLogin' /user:'$user' /persistent:no' >> /home/netlogon/$user".bat"
 
 			unix2dos /home/netlogon/$user".bat"
@@ -1722,9 +1722,6 @@ LiberaRecursosLote (){
 
 Apresenta (){
 
-
-
-
 		clear
 		
 		echo -e " +------------------------------------------------------------+"
@@ -1739,8 +1736,8 @@ Apresenta (){
 		echo -e " |                                                            |"
 		echo -e " | 01 - Revisao (revogacao) de Recursos de Rede               |"
 		echo -e " | 02 - Informacao do usuario Resumida                        |"
-		echo -e " | 03 - Criacao de usuario no Lambda e Sigma                  |"
-		echo -e " | 04 - Criacao de usuario no Sigma                           |"
+		echo -e " | 03 - Criacao de usuario no Servidor1 e Servidor2                  |"
+		echo -e " | 04 - Criacao de usuario no Servidor2                           |"
 		echo -e " | 05 - Desligamento de Usuario                               |"
 		echo -e " | 06 - Pesquisa de usuario aprovador                         |"
 		echo -e " | 07 - Liberacao de Recursos de Rede para um Usuario         |"
@@ -1771,7 +1768,7 @@ Apresenta (){
 				echo $user >>$LOG
 				
 				name=`cat /etc/passwd | grep "/$user:" | cut -d":" -f5`
-				TestaUsuarioExisteLambda
+				TestaUsuarioExisteServidor1
 			fi
 		fi
 
@@ -1781,9 +1778,9 @@ Apresenta (){
 			;;
 			2|"02") InformacaoUsuarioResumida
 			;;
-			3|"03") CriacaoUsuarioLambda
+			3|"03") CriacaoUsuarioServidor1
 			;;
-			4|"04") CriacaoUsuarioSigma
+			4|"04") CriacaoUsuarioServidor2
 			;;
 			5|"05") ExclusaoUsuario
 			;;
